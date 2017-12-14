@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!--引入boostrap类-->
+<link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="../public/bootstrap/js/jquery-3.0.0.min.js"></script>
+<script src="../public/bootstrap/js/bootstrap.min.js"></script>
+<style>
+	.panel,.panel-heading{
+		border-radius:0 !important;
+	}
+	a:focus{
+		outline:none;
+		-moz-outline:none;
+	}
+</style>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse" style="margin:0;background:#438eb9;border:0;border-radius:0;">
+    	<div class="container-fluid">
+	    	<div class="navbar-header">
+	    		<div class="navbar-brand">
+	    			<small class="glyphicon glyphicon-fire"></small>新闻系统
+	    		</div>
+	    	</div>
+			<ul class="nav navbar-nav nav-stacked navbar-right">
+				<li style="border-right:2px solid white;background:#555;">
+					<a href="#">
+						<span class="glyphicon glyphicon-tasks"></span>
+						<i class="badge">8</i>
+					</a>
+				</li>
+				<li style="border-right:2px solid white;margin:0;background:#892e65">
+					<a href="#" style="display:inline-blick;height:50px;">
+					<span class="glyphicon glyphicon-bell"></span>
+					<i class="badge">8</i>
+					</a>
+				</li>
+				<li style="border-right:2px solid white;margin:0;background:#2e8965;" class="bg-danger">
+					<a href="#">
+					<span class="glyphicon glyphicon-envelope"></span>
+					<i class="badge">8</i>
+					</a>
+				</li>
+				<li  style="margin:0;background:#62a8d1">
+					<a style="display:inline-block;height:50px;padding-top:5px;" href="#" data-toggle="dropdown" style="padding:0;">
+						<img style="margin:0" src="../public/images/user_photo.jpg" class="img-circle" width="40"/>
+						<small>Welcom</small>
+						Admin
+					</a>
+					<ul class="dropdown-menu">
+						<li class="active">
+							<a href="#">
+								<span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Setting</a>
+						</li>
+						<li>
+							<a href="#">
+								<span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Profile</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="login.php"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Logout</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+    </div>
+    <div class="container-fluid">
+    	<div class="row">
+		<div class="col-sm-2" style="min-height:580px;padding:0;border-right: 1px solid #ccc;">
+			<div id="search" style="padding:5px;">
+				<div class="input-group">
+					<input class="form-control input-sm" type="text"/>
+					<div class="input-group-btn">
+						<a href="#" class="btn btn-warning btn-sm">
+							<span class="glyphicon glyphicon-search"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="panel-group" id="box">
+				<div class="panel panel-success"  style="border-right:none";>
+					<div class="panel-heading">
+						<a href="#collapseA" data-parent="#box" data-toggle="collapse" class="panel-title">新闻管理</a>
+					</div>
+					<div class="panel-collapse collapse in" id="collapseA">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="listnews.php">新闻列表</a></li>
+								<li><a href="addNews.php">新闻添加</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<a href="#collapseB" data-parent="#box" data-toggle="collapse" class="panel-title">产品管理</a>
+					</div>
+					<div class="panel-collapse collapse" id="collapseB">
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">产品列表</a></li>
+								<li><a href="#">产品添加</a></li>
+								<li><a href="#">产品删除</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-10" style="padding:0;">
+			<div class="bread-crumb" style="height:40px;margin-bottom:0;">
+				<ul class="breadcrumb" style="height:40px;">
+					<li><span class="glyphicon glyphicon-home">&nbsp;&nbsp;</span><a href="#">Home</a></li>
+					<li><a href="#">User</a></li>
+					<li>Add</li>
+				</ul>
+			</div>
+			<div class="panel panel-success"  style="border-left:none";>
+				<div class="panel-heading">
+					<a class="panel-title">添加新闻</a>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" action="insertnews.php" method="post">
+						<div class="form-group">
+							<label class='col-sm-2 control-label' for="n_name" style="font-weight:normal;">名称</label>
+							<div class="col-sm-4 input-group">
+								<input class="form-control" type="text" name="n_name" id="n_name" placeholder='新闻名称'>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class='col-sm-2 control-label' for="p_id" style="font-weight:normal;">所属新闻</label>
+							<div class="col-sm-3" style="padding-left:0;">
+								<select name="p_id" id="p_id" class="form-control">
+									<option value="0">顶级新闻</option>
+									<option value="1">生活纪实</option>
+									<option value="2">程序人生</option>
+									<option value="3">人生感悟</option>
+									<option value="4">社交</option>
+									<option value="5">旅游</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class='col-sm-2 control-label' for="n_sort" style="font-weight:normal;">排序</label>
+							<div class="col-sm-2 input-group">
+								<input class="form-control" type="text" name="n_sort" id="n_sort" value="50">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class='col-sm-2 control-label' for="n_desc" style="font-weight:normal;">描述</label>
+							<div class="col-sm-6 input-group">
+								<textarea class="form-control" style="resize:none;" name="n_desc" id="n_dest" placeholder='新闻描述'></textarea>
+							</div>
+                        </div>
+                        <div class="form-group">
+							<label class='col-sm-2 control-label' for="n_content" style="font-weight:normal;">新闻内容</label>
+							<div class="col-sm-6 input-group">
+								<textarea class="form-control" style="resize:none;" name="n_content" id="n_dest" placeholder='新闻内容'></textarea>
+							</div>
+						</div>
+						<div class="form-group" style="margin-top:50px;">
+							<button class="btn btn-sm btn-info col-sm-1 col-sm-offset-2" type="reset">
+								<label class="glyphicon glyphicon-repeat pull-left"></label>重置
+							</button>
+							<button style="margin-left:10px;" class="btn btn-sm btn-info col-sm-2" type="submit">
+								<label class="glyphicon glyphicon-ok pull-left"></label>提交
+							</button>
+						</div>
+					</form>
+			</div>
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>
+
