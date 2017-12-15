@@ -8,8 +8,10 @@
 <meta name="keywords" content="">
 <!--引入boostrap类-->
 <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../public/layui/css/layui.css">
 <script src="../public/bootstrap/js/jquery-3.0.0.min.js"></script>
 <script src="../public/bootstrap/js/bootstrap.min.js"></script>
+<script src="../public/layui/layui.all.js"></script>
 <style>
 	.panel,.panel-heading{
 		border-radius:0 !important;
@@ -173,7 +175,7 @@
 							<button class="btn btn-sm btn-info col-sm-1 col-sm-offset-2" type="reset">
 								<label class="glyphicon glyphicon-repeat pull-left"></label>重置
 							</button>
-							<button style="margin-left:10px;" class="btn btn-sm btn-info col-sm-2" type="submit">
+							<button style="margin-left:10px;" class="btn btn-sm btn-info col-sm-2" type="submit" onclick="addNews()" >
 								<label class="glyphicon glyphicon-ok pull-left"></label>提交
 							</button>
 						</div>
@@ -184,5 +186,10 @@
 	</div>
 
 </body>
+<script>
+    function addNews(){
+        layer.msg('新闻添加成功',{icon:3,time:1500});
+    }
+</script>
 </html>
 

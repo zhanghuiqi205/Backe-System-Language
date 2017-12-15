@@ -8,8 +8,11 @@
 <meta name="keywords" content="">
 <!--引入boostrap类-->
 <link href="../public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../public/layui/css/layui.css">
 <script src="../public/bootstrap/js/jquery-3.0.0.min.js"></script>
 <script src="../public/bootstrap/js/bootstrap.min.js"></script>
+<script src="../public/layui/layui.all.js"></script>
+
 <style>
 	.col-sm-2{
 		padding:0;
@@ -171,7 +174,7 @@
                                    
 								<td><?php  echo $row['n_dest'] ?></td>
 								<td>
-                                    <a href="delnews.php?id=<?php echo $row['id']?>">
+                                    <a  onclick="delNews(<?php echo $row['id'] ?>)">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
                                     <a href="viewnews.php?id=<?php echo  $row['id']?>">
@@ -185,8 +188,7 @@
 							<tr>
 								<td colspan="8" style="text-align:center;">
 									<ul class="pagination">
-                                            <?php echo $pageNumString;?>
-                                            
+                                            <?php echo $pageNumString;?>      
 									</ul>
 								</td>
 							</tr>
@@ -198,5 +200,13 @@
 		</div>
 	</div>
 </body>
+<script>
+    function delNews(num){
+        layer.alert('',{icon:2,title:'删除确认',content:'您确定要删除这条记录吗？',closeBtn:1},function(index){
+            window.location.href ="delnews.php?id="+num;
+          layer.close(index);
+        });
+    }
+</script>
 </html>
 
