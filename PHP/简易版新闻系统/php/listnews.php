@@ -1,11 +1,14 @@
 <?php
 
+if(!$_SESSION['userinfo']){
+    header("location:login.php");
+    exit;
+}
+
 //当前页码数，默认当前页码为1
 $curPage = isset($_GET['curPage'])?$_GET['curPage']:1;
-//人为的定义一个最大的页码数
-$rowsPerPage = 10;
-//获取所有的新闻数据
 
+//获取所有的新闻数据
 $obj =mysqli_connect('127.0.0.1','root','151766');
 //设置字符集
 $sql  =  "set names utf8";
@@ -14,6 +17,8 @@ $return = mysqli_query($obj,$sql);
 $sql  =  "use php1210";
 $return = mysqli_query($obj,$sql);
 
+//人为的定义一个最大的页码数
+$rowsPerPage = 10;
 //获得数据
 $offset = ($curPage-1)*$rowsPerPage;
 $sql = "select * from news order by n_sort desc limit $offset,$rowsPerPage";

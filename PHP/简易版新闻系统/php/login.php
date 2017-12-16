@@ -3,15 +3,6 @@
 
 
 
-
-
-
-
 include '../resource/login.html';
-
-
-
-
-
 
 ?>

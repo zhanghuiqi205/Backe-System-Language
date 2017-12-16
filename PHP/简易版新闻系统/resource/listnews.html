@@ -71,7 +71,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="login.php"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Logout</a>
+							<a href="logout.php"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Logout</a>
 						</li>
 					</ul>
 				</li>
@@ -174,7 +174,7 @@
                                    
 								<td><?php  echo $row['n_dest'] ?></td>
 								<td>
-                                    <a  onclick="delNews(<?php echo $row['id'] ?>)">
+                                    <a  onclick="delNews(<?php echo $row['id'] ?>,<?php echo $curPage ?>)">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
                                     <a href="viewnews.php?id=<?php echo  $row['id']?>">
@@ -201,9 +201,9 @@
 	</div>
 </body>
 <script>
-    function delNews(num){
+    function delNews(num,curPage){
         layer.alert('',{icon:2,title:'删除确认',content:'您确定要删除这条记录吗？',closeBtn:1},function(index){
-            window.location.href ="delnews.php?id="+num;
+            window.location.href ="delnews.php?id="+num+"&curPage="+curPage;
           layer.close(index);
         });
     }

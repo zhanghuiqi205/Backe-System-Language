@@ -1,9 +1,11 @@
 <?php
 
-echo '<pre>';
 
-print_r($_POST);
 
+if(!$_SESSION['userinfo']){
+    header("location:login.php");
+    exit;
+}
 
 $n_title =$_POST['n_name'];
 $c_id =$_POST['p_id'];
@@ -26,10 +28,16 @@ $return = mysqli_query($obj,$sql);
 //模拟数据
 $sql  =  "insert into news values(default,'$n_title','$c_id','$n_sort','$n_desc','$n_content')";
 $return = mysqli_query($obj,$sql);
+if(mysqli_errno($obj)){
+    echo "sql语句执行错误，错误信息如下：<br/>";
+    echo mysqli_error($obj);
+    exit;
+}
+
 if($return){
     header('location:listnews.php');
 }else{
-   
+    header('location:listnews.php');
 }
 
 
