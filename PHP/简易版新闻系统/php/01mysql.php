@@ -3,6 +3,15 @@
 $name =$_POST['uname'];
 $pass =$_POST['upass'];
 
+$varly =$_POST['verify'];
+
+//获取验证码
+$code = $_SESSION['code'];
+//验证是否正确
+if(!strtolower($code)==strtolower($varly)){
+    header("location:login.php");
+    exit;
+}
 //连接数据库
 $obj =mysqli_connect('127.0.0.1','root','151766');
 //设置字符集
