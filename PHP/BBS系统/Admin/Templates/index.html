@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户登录</title>
+		<meta charset="UTF-8">
+   	<link rel="stylesheet" type="text/css" href="./Public/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./Public/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="./Public/css/animate.min.css">
+    <link rel="stylesheet" href="./Public/layui/css/layui.css">
+    <script src="./Public/js/jquery.min.js"></script>
+    <script src="./Public/layui/layui.all.js"></script>
+    
+    <style type="text/css">
+        body {
+            padding-top: 140px;
+            padding-bottom: 40px;
+            height:450px;
+            background-color: #333366;
+            background-image: url('./Public/assets/img/background.png');
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .form-signin {
+            max-width: 300px;
+            padding: 19px 29px 29px;
+            margin: 0 auto 20px;
+            background-color: #fff;
+            border: 1px solid #e5e5e5;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            font-size: 16px;
+            height: auto;
+            margin-bottom: 15px;
+            padding: 7px 9px;
+        }
+    </style> 
+</head>
+<body>
+    <div class="form-signin  animated  bounceIn">
+        <h3 class="form-signin-heading">王者荣耀论坛管理系统</h3>
+        <form action="./Module/back-home.php" method="post">
+	        <input type="text" name="userName" class="input-block-level" placeholder="请输入账号" required="required">
+	        <input type="password" name="userPass" class="input-block-level" placeholder="请输入密码" required="required">          
+            <div style="width: 300px;height: 40px;">
+                <input type="text" class="input" name="passcode" placeholder="填写右侧的验证码" required="" style="width: 150px;float:left;" />
+             <img src="./Core/code.php" onclick="this.src='./Core/code.php?'+Math.random()" class="passcode" style="margin-left:10px;border-radius:5px;"/>
+            </div>
+             <label for="remember" style="display:inline-block;margin-top: 6px;width: 300px">
+             <input type="checkbox" name="remember" id="remember" style="float:left;margin-right:10px;">
+             <span style="color:#666;text-align:left;">记住账号</span>
+             </label>
+	        <button class="btn btn-large btn-primary" id="submitBtn" type="submit"style="width:290px;">登录</button><br/>
+            
+			<span style="color:red;"></span>
+		</form>
+    </div>
+</body>
+<script>
+      $(function(){
+          if(<?php echo $info?>==1){
+            layer.msg('验证码错误',{time:1500});
+			return ;
+          }
+          if(<?php echo $info?>==2){
+            layer.msg('用户名或密码不能为空',{time:1500});
+			return ;
+          }
+          if(<?php echo $info?>==3){
+            layer.msg('用户名不存在',{time:1500});
+			return ;
+          }
+          if(<?php echo $info?>==4){
+            layer.msg('密码错误',{time:1500});
+			return ;
+          }
+
+
+      });
+</script>
+</html>              

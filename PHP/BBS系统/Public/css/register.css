@@ -1,0 +1,144 @@
+.step {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 2px solid #eee;
+  margin: 10px 0;
+  padding: 10px 0 0;
+}
+.step ul {
+  width: 540px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.step li {
+  float: left;
+  width: 180px;
+}
+.step li.cur a {
+  border-bottom: 2px solid #f00;
+}
+.step li a {
+  width: 180px;
+  color: #828280;
+  display: block;
+  position: relative;
+  height: 50px;
+}
+.step li a i {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 25px;
+  margin-right: 10px;
+  margin-left: 20px;
+  font-size: 14px;
+  color: #fff;
+  margin-top: -5px;
+}
+.step li.cur a i {
+  background-color: #f00;
+}
+.reg-box {
+  width: 978px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+}
+.reg-box h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7a8080;
+  line-height: 80px;
+  margin-left: 16px;
+}
+.reg-box h2 span {
+  font-size: 14px;
+  color: #c63224;
+}
+.reg-info .red {
+  color: #c63224;
+}
+.reg-info li {
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+.reg-info {
+  width: 714px;
+  height: 300px;
+  margin-left: 264px;
+  margin-top: 20px;
+}
+.reg-info .reg-l,
+.reg-info .reg-c,
+.reg-info .reg-r {
+  height: 54px;
+  float: left;
+}
+.reg-info .no-tips .reg-l,
+.reg-info .no-tips .reg-c,
+.reg-info .no-tips .reg-r {
+  height: 40px;
+}
+.reg-info .reg-l,
+.reg-info .reg-r {
+  line-height: 30px;
+}
+.reg-info .reg-l {
+  width: 92px;
+  padding-left: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #828280;
+}
+.reg-info .reg-c {
+  width: 262px;
+}
+.reg-info .reg-r {
+  width: 260px;
+  font-weight: bold;
+  color: #c63224;
+}
+.reg-info .txt {
+  border: 1px solid #7e7e7e;
+  width: 244px;
+  height: 28px;
+  line-height: 28px;
+  padding-left: 6px;
+}
+.reg-info .tips {
+  line-height: 24px;
+}
+.reg-info .fwb-tips {
+  font-weight: bold;
+  color: #7b7d7c;
+}
+.reg-info input::-webkit-file-upload-button {
+  height: 26px;
+  border: 1px solid #78817e;
+  line-height: 24px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.reg-info li.un-required span.red {
+  visibility: hidden;
+}
+.reg-info .submit-btn {
+  margin-left: 60px;
+  width: 88px;
+  height: 30px;
+  line-height: 28px;
+  border: 1px solid #78817e;
+  font-size: 16px;
+  font-weight: bold;
+  color: #7f7f7f;
+  background-color: #fff;
+  letter-spacing: 10px;
+  text-indent: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+}

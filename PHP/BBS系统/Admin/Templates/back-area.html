@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>用户管理</title>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-responsive.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+	    <script type="text/javascript" src="../Public/js/jquery.min.js"></script>  
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="./backAreaCheck.php" method="post">
+			专区名：<input name="userName" class="abc input-default" value=""></input>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-primary" onclick="location='backAreaAdd.php?'">添加</button>&nbsp;&nbsp;
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+		    <thead>
+			    <tr>
+			        <th>编号</th>
+			        <th>专区名</th>
+			        <th>专区帖数</th>
+			        <th>专区浏览数</th>
+			        <th>权限</th>			       
+			        <th style="text-align:center;">操作</th>
+			    </tr>
+		    </thead>
+		    
+			<?php foreach ($rows as $key=>$row) { ?>
+
+			<tr>
+				<td><?php echo $key+1 ?></td>				
+				<td><?php echo $row['area_name'] ?></td>
+				<td><?php echo '待查'?></td>				
+				<td><?php echo '待查'?></td>				
+				<td><?php if($row['area_role']==1){echo "所有用户";}else{echo "仅管理员";}?></td>						
+				<td style="text-align:center;">
+						<a href="./backAreaAmend.php?id=<?php echo $row['id'];?>" >修改|</a>						
+						<a href="./backAreaDele.php?id=<?php echo $row['id'];?>" >删除</a>
+				</td>
+			</tr>
+            <?php }?>
+            <tfoot>
+                <tr>
+                    <td colspan="8" class="pagination" style="text-align:center;">
+                        <ul>
+                              <?php echo $pageNumString;?>      
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+		</table>
+	</body>
+</html>

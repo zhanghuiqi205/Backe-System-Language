@@ -1,0 +1,5 @@
+#DirectoryIndex index.html
+deny from all
+
+#自定义错误页面
+#ErrorDocument 404  /error.html

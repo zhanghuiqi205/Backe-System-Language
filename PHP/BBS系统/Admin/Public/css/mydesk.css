@@ -1,0 +1,28 @@
+.mydeskTableBorder {background-color: #f5f9fe;border: 1px solid #bbb;margin:10px;height:530px;}
+.mydeskTitle{color:#fff;font-weight:bold;}
+.mydeskF01{color:#000;font-size:12px;padding-left:26px;line-height:30px;}
+.mydeskRed{color:#F00;font-size:14px;}
+.mydeskTiao{
+	background-image:url(../images/mydesk_10.jpg);	background-color:#f5f9fe;
+	line-height:24px;
+	background-repeat: no-repeat;
+	background-position: left center;
+	color:#036;font-size:12px;padding-left:20px;font-weight:bold;
+}
+.mydeskBiao {padding:8px 20px;}
+
+.mydeskTitleBig{
+	color:#000;
+	font-weight:bold;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #9cb8cc;
+	line-height:28px;
+}
+.mydeskInfoBig{
+	color:#000;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #ccc;
+	line-height:28px;
+}

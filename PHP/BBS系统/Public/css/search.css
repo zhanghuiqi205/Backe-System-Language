@@ -1,0 +1,171 @@
+#search_ {
+	font-family: Verdana;
+}
+
+#search_ #search_main table {
+	border-collapse: collapse;
+	margin: 5px 10px;
+	width: 200px;
+}
+
+#search_ #search_main th {
+	font-weight: bold;
+	padding: 5px;
+}
+
+#search_ #search_main table {
+	border-collapse: collapse;
+}
+
+#search_ #search_main tbody th {
+	font-weight: normal;
+}
+
+#search_ #search_main th {
+	white-space: nowrap;
+	font-weight: bold;
+	padding: 5px;
+}
+
+#search_ #search_main td {
+	padding: 5px;
+}
+
+.ora {
+  color: orange!important;
+}
+.search-res-info {
+  line-height: 34px;
+  height: 34px;
+  padding-left: 10px;
+}
+.search-res-box {
+  width: 934px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+  padding: 10px 22px;
+}
+.search-res-box .tit {
+  color: #333;
+  height: 42px;
+  line-height: 42px;
+  border-bottom: 1px solid #ededed;
+}
+.search-res-box .tit strong {
+  margin-right: 4px;
+}
+.search-res-box strong {
+  font-weight: bold;
+}
+.search-res-list li {
+  height: 98px;
+  overflow: hidden;
+  border-bottom: 1px solid #ededed;
+}
+.search-res-list .topic-tit {
+  font-size: 16px;
+  line-height: 34px;
+  margin-top: 4px;
+}
+.search-res-list .topic-tit a {
+  color: #08457e;
+}
+.search-res-list .topic-tit a:hover {
+  text-decoration: underline;
+}
+.hm-search-con {
+  font-size: 12px;
+  color: grey;
+  height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+  max-width: 925px;
+}
+.hm-search-info {
+  height: 35px;
+  line-height: 31px;
+  color: #B3B3B3;
+}
+.hm-search-info .post-time {
+  margin-left: 10px;
+}
+.hm-search-fun {
+  height: 35px;
+  line-height: 31px;
+}
+.hm-search-fun span {
+  float: left;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+.hm-search-fun .icon-like i,
+.hm-search-fun .icon-talk i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  background: url(../images/img02.png) 0 0 no-repeat;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.hm-search-fun .icon-talk {
+  margin-right: 0;
+  padding-right: 10px;
+}
+.hm-search-fun .icon-talk i {
+  background-position: -16px 0;
+}
+.search-page-box {
+  padding: 23px 15px 23px 4px;
+}
+.search-page-box span,
+.search-page-box a,
+.search-page-box p {
+  float: left;
+}
+.search-page-box span.current {
+  background: #ededed;
+}
+.search-page-box span,
+.search-page-box a {
+  border: 1px solid #d9d9d9;
+  color: #333;
+  margin: 0 0 0 4px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  display: block;
+}
+.search-page-box p span {
+  border: 0;
+  float: left;
+  padding: 0 4px;
+}
+.search-page-box p span:nth-last-of-type(1) {
+  margin: 0;
+}
+.search-page-box .to-page-num {
+  width: 36px;
+  height: 26px;
+  padding: 0;
+  line-height: 26px;
+  text-align: center;
+  float: left;
+  border: 1px solid #d9d9d9;
+}
+.search-page-box .sure {
+  padding: 0 18px;
+}
+
+.search-box{
+	position:relative;
+}
+.search-box .btn{
+	position:absolute;
+	right:0px;
+	bottom:0px;
+}
+.search-box .txt{
+	height:38px;
+}
+

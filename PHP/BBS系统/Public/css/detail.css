@@ -1,0 +1,330 @@
+.detail-page-box {
+  padding: 18px 15px 18px 20px;
+  border: 1px solid #e6e6e6;
+  background-color: #fafafa;
+}
+.detail-page-box span,
+.detail-page-box a,
+.detail-page-box p {
+  float: left;
+}
+.detail-page-box span.current {
+  background: #ededed;
+}
+.detail-page-box span,
+.detail-page-box a {
+  border: 1px solid #d9d9d9;
+  color: #333;
+  margin: 0 0 0 4px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  display: block;
+  background-color: #fff;
+}
+.detail-page-box p span {
+  border: 0;
+  float: left;
+  padding: 0 4px;
+}
+.detail-page-box p span:nth-last-of-type(1) {
+  margin: 0;
+}
+.detail-page-box .to-page-num {
+  width: 36px;
+  height: 26px;
+  padding: 0;
+  line-height: 26px;
+  text-align: center;
+  float: left;
+  border: 1px solid #d9d9d9;
+}
+.detail-page-box .sure {
+  padding: 0 18px;
+}
+.detail-box {
+  width: 980px;
+  background-color: #fff;
+  border-top: 0;
+}
+.detail-tit {
+  height: 45px;
+  border: 1px solid #e6e6e6;
+  border-top: 0;
+  padding-left: 15px;
+}
+.detail-tit h2 {
+  line-height: 45px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+.hm-detail-fun {
+  height: 35px;
+  line-height: 31px;
+  margin-top: 7px;
+}
+.hm-detail-fun span {
+  float: left;
+  margin: 0 20px;
+}
+.hm-detail-fun .icon-like i,
+.hm-detail-fun .icon-talk i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  background: url(../images/img02.png) 0 0 no-repeat;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.hm-detail-fun .icon-like {
+  cursor: pointer;
+}
+.hm-detail-fun .icon-liked i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  background: url(../images/img02.png) 0 0 no-repeat;
+  vertical-align: middle;
+  margin-top: -2px; 
+  background-position: -112px -32px;
+}
+.hm-detail-fun .icon-talk {
+  margin: 0;
+  padding-right: 10px;
+}
+.hm-detail-fun .icon-talk i {
+  background-position: -16px 0;
+}
+.new-to-old {
+  width: 96px;
+  height: 23px;
+  border: 1px solid #cccccc;
+  line-height: 23px;
+  margin-right: 15px;
+  margin-top: 10px;
+  padding-left: 2px;
+}
+.new-to-old i {
+  width: 16px;
+  height: 16px;
+  background: url(../images/img02.png) -64px 0 no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+/*每一层*/
+.detail-floors {
+  border-top: 1px solid #e6e6e6;
+}
+li.floor {
+  min-height: 275px;
+  border: 1px solid #e6e6e6;
+  border-top: 0;
+  background-color: #fafafa;
+}
+.floorer-info {
+  width: 170px;
+  color: #fafafa;
+  padding: 22px 15px 0;
+}
+.floorer-photo {
+  border-bottom: 1px dotted #bfbfbf;
+  padding-bottom: 28px;
+  text-align: center;
+}
+.floorer-photo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.floorer-name {
+  font-weight: bold;
+  line-height: 44px;
+  font-size: 14px;
+  color: #333;
+}
+.floorer-name i {
+  width: 20px;
+  height: 24px;
+  display: inline-block;
+  background: url(../images/img03.png) -89px 0 no-repeat;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+.floorer-name i.man {
+  background-position: -111px 0;
+}
+.floorer-name i.woman {
+  background-position: -89px 0;
+}
+.floor-con {
+  padding: 5px 14px 0;
+  width: 749px;
+  border-left: 1px solid #e6e6e6;
+  background-color: #fff;
+  min-height: 275px;
+}
+.floor-info {
+  color: #999;
+  line-height: 30px;
+  border-bottom: 1px dotted #ccc;
+}
+.floor-art-ans {
+  padding-top: 20px;
+}
+.floor-art {
+  font-size: 16px;
+  line-height: 28px;
+  color: #333;
+}
+.floor-ans {
+  background-color: #fafafa;
+  margin-top: 20px;
+  padding: 0 10px;
+  margin-bottom: 40px;
+}
+.floor-ans li {
+  padding: 14px 0;
+  border-bottom: 1px dotted #dedede;
+}
+.floor-ans-pho img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.floor-ans-con {
+  color: #333;
+  font-size: 14px;
+  margin-left: 20px;
+  padding-top: 8px;
+  max-width: 650px;
+  line-height: 2;
+}
+.floor-ans-con .name {
+  color: #576b95;
+}
+.floor-ans-con i {
+  margin: 0 8px;
+}
+.floor-ans-con .ans-time {
+  font-size: 12px;
+  color: #999;
+  margin-left: 6px;
+}
+.detail-to-comment {
+  background-color: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-top: 0;
+  padding: 0 20px 20px;
+  font-size: 14px;
+}
+.detail-to-comment .tit {
+  height: 45px;
+  line-height: 45px;
+  color: #333;
+  font-weight: bold;
+}
+.detail-to-comment .con {
+  height: 218px;
+  border: 2px solid #dddddd;
+  background-color: #f5f5f5;
+  line-height: 218px;
+  text-align: center;
+}
+.detail-to-comment .con.con-loged {
+  height: 220px;
+  border: 1px solid #dddddd;
+  line-height: 28px;
+  background-color: #fff;
+  text-align: left;
+}
+.detail-to-comment .con-t {
+  height: 169px;
+  border-bottom: 1px solid #ddd;
+}
+.detail-to-comment .con-t textarea {
+  height: 159px;
+  width: inherit;
+  padding: 5px 10px;
+  width: 916px;
+  line-height: 28px;
+  font-family: "微软雅黑";
+}
+.detail-to-comment .con-b {
+  height: 50px;
+  background-color: #F9F9F8;
+}
+.detail-to-comment .con-b .btn {
+  width: 75px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #FF801E;
+  color: #fff;
+  text-align: center;
+  border: 0;
+  border-radius: 4px;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.detail-to-comment .con-b .num {
+  color: #FF801E;
+  float: right;
+  line-height: 50px;
+  margin-right: 15px;
+}
+.pop-box.login-box .win {
+  width: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.pop-box.login-box .win_hd {
+  background-color: #fff;
+  color: #666;
+}
+.pop-box.login-box .win_bd {
+  height: 200px;
+}
+.login-box ul {
+  padding-top: 20px;
+}
+.login-box ul li {
+  overflow: hidden;
+  height: 45px;
+}
+.login-box .login-l,
+.login-box .login-c {
+  float: left;
+}
+.login-box .login-l {
+  height: 45px;
+  width: 100px;
+  text-align: right;
+  line-height: 34px;
+  font-size: 16px;
+}
+.login-box .login-c .txt {
+  width: 180px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 6px;
+}
+.login-box .login-c .login-btn,
+.login-box .login-c .to-reg-btn {
+  width: 80px;
+  height: 30px;
+  border: 0;
+  background-color: #FF8021;
+  margin-top: 15px;
+  float: left;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}

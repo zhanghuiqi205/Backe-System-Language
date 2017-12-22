@@ -1,0 +1,32 @@
+#search_ {
+	font-family: Verdana;
+}
+
+#search_ #search_main table {
+	border-collapse: collapse;
+	margin: 5px 10px;
+	width: 200px;
+}
+
+#search_ #search_main th {
+	font-weight: bold;
+	padding: 5px;
+}
+
+#search_ #search_main table {
+	border-collapse: collapse;
+}
+
+#search_ #search_main tbody th {
+	font-weight: normal;
+}
+
+#search_ #search_main th {
+	white-space: nowrap;
+	font-weight: bold;
+	padding: 5px;
+}
+
+#search_ #search_main td {
+	padding: 5px;
+}

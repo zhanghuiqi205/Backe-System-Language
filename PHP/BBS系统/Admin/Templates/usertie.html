@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>帖子管理</title>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-responsive.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+	    <script type="text/javascript" src="../Public/js/jquery.min.js"></script>  
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="./usertie.php" method="post">
+			标题：<input name="title" class="abc input-default" value="" ></input>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+            <?php if($user_role==0){?>
+            <button type="button" class="btn btn-primary" onclick="location='addInvitation.php?get=user'">添加</button>&nbsp;&nbsp;
+            <?php }?> 
+		    <font color="red"></font>
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+		    <thead>
+			    <tr>
+					<th>编号</th>
+					<th>所属专区</th>
+			        <th>标题</th>
+			        <th>关键词</th>
+			        <th>发布时间</th>
+			        <th>发布人</th>
+			        <th>是否置顶</th>
+			        <th>回复数</th>
+			        <th>点赞数</th>
+			        <th>浏览数</th>
+			        <th><?php echo ($user_role==0)?'帖子修改':'置顶申请处理' ?></th>
+			        <th style="text-align:center;">操作</th>
+			    </tr>
+		    </thead>
+		    <?php foreach ($rows as $i => $row) {?>
+			<tr>
+				<td><?php echo $i+1;?></td>
+				<td><?php echo $row['pub_area']?></td>
+				<td><?php echo $row['pub_title']?></td>
+				<td><?php echo $row['pub_title']?></td>
+				<td><?php echo $row['pub_time']?></td>
+				<td><?php echo $row['pub_owner']?></td>
+				<td id="topset<?php echo $row['id']?>"><?php if($row['pub_top']==1){echo '是'; }else{echo '否';}?></td>
+				<td>0</td>
+				<td><?php echo $row['pub_like']?></td>
+				<td><?php echo $row['pub_hits']?></td>
+				<td >
+                    <!-- 管理者登录 -->
+                    <?php if($user_role==1) {?>
+                        <span id="tophandle<?php if($row['user_role']==1){echo $row['id'];}?>">
+                                <?php
+                                    if($user_role==1){
+                                        if($row['pub_apply_top']==1){
+                                            echo '已申请|';					
+                                        }else if($row['pub_apply_top']==0){ echo '未申请|';}
+                                    }
+                                ?>
+                            </span>
+                            <span id="top<?php if($row['user_role']==1){echo $row['id'];}?>">						
+                                <?php if($row['user_role']==0){echo "<a href=\"./UserTieModify.php?id=";}?>
+                                <?php if($row['user_role']==0){echo $row['id'];} ?>
+                                <?php if($row['user_role']==0){echo "\">";}?>
+                                <?php if($user_role==1){echo '置顶';}else{echo "修改</a>";}?>
+                            </span>
+                            <span id="top<?php if($row['user_role']==0){echo $row['id'];}?>f"><?php if($row['user_role']==1){echo '不置顶';}?></span>
+                    <?php }?> 
+                    <!-- 用者登录显示 -->
+                    <?php if($user_role==0) {?>
+                      
+                       <span >申请置顶</span>
+
+                    <?php }?> 
+                </td>
+				<td style="text-align:center;">
+                    	<!-- 管理者登录显示  -->
+                    <?php if($user_role==1) {?>
+                    <a href="./adminDel.php?id=<?php echo $row['id'];?>&get=user">删除</a>&nbsp;
+                    <a href="./adminreply.php?id=<?php echo $row['id']; ?>">查看评论</a>
+                    <?php }?> 
+
+
+
+
+                        <!-- 用户登录显示  -->
+                    <?php if($user_role==0) {?>
+                        <a href="./adminDel.php?id=<?php echo $row['id'];?>&get=user">删除</a>&nbsp;
+                        <a href="./alter.php?id=<?php echo $row['id'];?>&get=user">修改</a>&nbsp;
+                        <a href="./adminreply.php?id=<?php echo $row['id']; ?>">查看评论</a>
+                    <?php }?>             
+				</td>
+			</tr>
+			<?php }?>
+		</table>
+	</body>
+</html>
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>帖子管理-添加</title>
+    	<meta charset="UTF-8">
+     	<link rel="stylesheet" type="text/css" href="../Public/css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-responsive.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+	    <script type="text/javascript" src="../Public/js/jquery.min.js"></script>
+			<script type="text/javascript" src="../Public/js/kindeditor/kindeditor-min.js"></script>
+			<script type="text/javascript" src="../Public/js/kindeditor/lang/zh_CN.js"></script>
+	</head>
+	<body>
+	    <form action="./userTiesave.php" method="post" class="definewidth m20">
+			<table class="table table-bordered table-hover definewidth m10">
+		        <tr>
+		        	<td width="10%" class="tableleft">标题</td>
+		            <td width="40%">
+                        <input type="hidden" id="title" name="id" value="<?php echo $id ?>"/>
+		            	<input type="text" id="title" name="title" value="<?php echo $curtInfo['pub_title'] ?>"/>
+		            </td>
+		            <td width="10%" class="tableleft">交流区</td>
+		            <td width="40%">
+		            	<select name="zoneId">
+                         <?php foreach ($rows as $i => $row) {?>	            		
+		            			<option value="<?php echo $row['area_name'] ?>"><?php echo $row['area_name'] ?></option>
+                            <?php }?>      
+		            	</select>
+		            </td>
+		        </tr>
+		        <tr>
+		        	<td width="10%" class="tableleft">是否置顶</td>
+		            <td width="10%">
+		            	<input type="radio" name="isTop" checked="<?php echo $curtInfo['pub_top']==1?'checked':'' ?>" value="1"/>是
+		            	<input type="radio" name="isTop" checked="<?php echo $curtInfo['pub_top']==0?'checked':'' ?>" value="0"/>否
+		            </td>
+                    <td width="10%" class="tableleft">关键词</td>
+		            <td>
+                        <input type="text" name="keyword" value="<?php echo $curtInfo['pub_title'] ?>">	
+		            </td>
+		        </tr>	
+		        <tr>
+		            <td width="10%" class="tableleft">内容</td>
+		            <td colspan="3">
+		            	<textarea name="content" id="content" rows="15" style="width:100%;">
+                                <?php echo $curtInfo['pub_content'] ?>
+                        </textarea>
+		            </td>
+		        </tr>
+		        <tr>
+		            <td class="tableleft"></td>
+		            <td colspan="3">
+		            	<input type="submit" class="btn btn-primary" value="保存"/>
+		                &nbsp;&nbsp;<input type="button" class="btn btn-success" name="backid" id="backid" value="返回"/>
+		            	&nbsp;&nbsp;<font color="red"></font>
+		            </td>
+		        </tr>
+			</table>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+		var editor;
+		
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="content"]', {
+				resizeType : 1,
+				allowPreviewEmoticons : false,
+				allowImageUpload : false,
+				items : [ 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
+						'bold', 'italic', 'underline', 'removeformat', '|',
+						'justifyleft', 'justifycenter', 'justifyright',
+						'insertorderedlist', 'insertunorderedlist', '|',
+						'link' ],
+				afterBlur: function(){
+					this.sync();
+				}				
+			});
+		});
+				
+		//返回按钮事件
+		$('#backid').click(function(){
+			location = "usertie.php";
+		});
+</script>

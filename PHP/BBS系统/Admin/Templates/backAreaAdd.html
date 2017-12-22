@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<title>添加专区</title>
+    	<meta charset="UTF-8">
+     	<link rel="stylesheet" type="text/css" href="../Public/css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-responsive.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+	    <script type="text/javascript" src="../Public/js/jquery.min.js"></script>			
+	</head>
+	<body>
+	    <form action="./backAreaAmend3.php" method="post" class="definewidth m20">
+			<table class="table table-bordered table-hover definewidth m10">
+		        <tr>
+		        	<td width="20%" class="tableleft">添加专区</td>
+		            <td width="80%">
+		            	<input type="text" id="area_name" name="area_name" required="required"  />
+		            </td>		            
+		        </tr>
+		        <tr>
+		        	<td width="10%" class="tableleft">用户发帖权限</td>
+		            <td width="10%">
+		            	<input type="radio" name="area_role" value="0" checked />仅管理员
+		            	<input type="radio" name="area_role"  value="1" />所有用户
+		            </td>		            		          
+		        </tr>		        
+		        <tr>
+		            <td class="tableleft"></td>
+		            <td colspan="3">
+		            	<input type="submit" class="btn btn-primary" value="保存"/>
+		                &nbsp;&nbsp;<input type="button" class="btn btn-success" name="backid" id="backid" value="返回"/>
+		            	&nbsp;&nbsp;<font color="red"></font>
+		            </td>
+		        </tr>
+			</table>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+		//返回按钮事件
+		$('#backid').click(function(){
+			location = "../Module/back-area.php";
+		});
+</script>

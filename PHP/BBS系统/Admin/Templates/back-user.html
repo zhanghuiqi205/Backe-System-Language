@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>用户管理</title>
+	    <meta charset="UTF-8">
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-responsive.min.css" />
+	    <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+	    <script type="text/javascript" src="../Public/js/jquery.min.js"></script>  
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="back-user.php" method="post">
+			用户名：<input name="userName" class="abc input-default" value=""></input>&nbsp;&nbsp;
+			<button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp;
+		</form>
+		<table class="table table-bordered table-hover definewidth m10">
+            <thead>
+			    <tr>
+			        <th>编号</th>
+			        <th>用户名</th>
+			        <th>邮箱</th>
+			        <th>头像</th>
+			        <th>角色</th>			        
+			        <th>发言状态</th>
+			        <th style="text-align:center;">操作</th>
+			    </tr>
+		    </thead>
+		    
+			<?php foreach ($rows as $key=>$row) { ?>
+                <tr>
+                    <td><?php echo $key+1 ?></td>
+                    <td><?php echo $row['user_name'] ?></td>
+                    <td><?php echo $row['user_email'] ?></td>
+                    <td><?php echo $row['user_icon'] ?></td>
+                    <td><?php if($row['user_role']==1){echo "管理员";}else{echo "普通用户";}?></td>				
+                    <td style="text-align:center;"><font color="<?php echo empty($row['user_allowed'])?'red':'green'; ?>"><?php if($row['user_allowed']==1){echo "正常"; }else{echo "已屏蔽";}?></font></td>
+                    <td style="text-align:center;">
+                        <a href="./allowed.php?id=<?php echo $row['id'];?>" onclick="return <?php echo empty($row['user_role'])?'true':'false' ?>;" ><?php echo empty($row['user_allowed'])?'解除':'屏蔽'; ?></a>
+                    </td>
+                </tr>
+            <?php }?>
+            <tfoot>
+                <tr>
+                    <td colspan="8" class="pagination" style="text-align:center;">
+                        <ul>
+                              <?php echo $pageNumString;?>      
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
+		</table>
+	</body>
+</html>

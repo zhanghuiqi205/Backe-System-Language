@@ -1,0 +1,133 @@
+.user-info .red {
+  color: #f00!important;
+}
+.user-info-t {
+  height: 50px;
+  line-height: 50px;
+}
+.user-info-l {
+  width: 200px;
+  min-height: 545px;
+  background-color: #fff;
+}
+.user-info-l-t img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 30px auto 0;
+}
+.user-info-l-t .username {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #333;
+}
+.user-info-l-b {
+  padding-left: 50px;
+  font-size: 14px;
+}
+.user-info-l-b i {
+  width: 20px;
+  height: 24px;
+  background: url(../images/img03.png) 0 -44px no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.user-info-l-b li {
+  margin: 10px 0;
+}
+.user-info-l-b li.cur {
+  color: #FA8932;
+}
+.user-info-l-b li.cur .info-icon {
+  background-position: 0 -22px;
+}
+.user-info-l-b li.cur .safe-icon {
+  background-position: -89px -22px;
+}
+.user-info-l-b .safe-icon {
+  background-position: -89px -44px;
+}
+.user-info-r {
+  width: 690px;
+  background-color: #fff;
+  padding: 0 30px 30px;
+  min-height: 515px;
+}
+.user-info-r .hd {
+  border-bottom: 1px solid #ededed;
+  padding-top: 10px;
+  height: 50px;
+}
+.user-info-r .hd li {
+  float: left;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  width: 100px;
+  text-align: center;
+  font-size: 16px;
+}
+.user-info-r .hd li.cur {
+  border-bottom: 1px solid #FA8932;
+}
+.user-info-r .hd li a {
+  color: #666;
+  display: block;
+}
+.user-info-r .hd li.cur a {
+  color: #FA8932;
+}
+.user-info-r .info-l {
+  width: 100px;
+  text-align: right;
+  line-height: 34px;
+  padding-right: 5px;
+  height: 34px;
+}
+.user-info-r .info-l,
+.user-info-r .info-r {
+  float: left;
+}
+.user-info-r .bd li {
+  margin-top: 16px;
+  font-size: 14px;
+}
+.user-info-r .info-l i {
+  margin-right: 8px;
+}
+.user-info-r .info-r .txt {
+  height: 30px;
+  width: 200px;
+  padding-left: 8px;
+  line-height: 30px;
+  border: 1px solid #ddd;
+}
+.user-info-r .info-r textarea.txt {
+  width: 300px;
+  height: 80px;
+  font-family: "微软雅黑";
+}
+.user-info-r .info-r .btn {
+  width: 70px;
+  height: 30px;
+  background-color: #FA8932;
+  color: #fff;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  line-height: 30px;
+}
+.user-info-r .info-r.sexbox {
+  line-height: 30px;
+}
+.user-info-r .info-r input::-webkit-file-upload-button {
+  height: 26px;
+  border: 1px solid #78817e;
+  line-height: 24px;
+  background-color: #fff;
+  cursor: pointer;
+  color: #555;
+}

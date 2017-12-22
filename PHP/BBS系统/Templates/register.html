@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>王者荣耀论坛注册页</title>
+    <link rel="stylesheet" href="../Public/css/common.css" />
+    <link rel="stylesheet" href="../Public/css/common-new.css" />
+    <link rel="stylesheet" href="../Public/css/search.css" />
+    <link rel="stylesheet" href="../Public/css/register.css" />
+    <script type="text/javascript" src="../Public/js/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" href="../../Public/animate.min.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <div class="hm-top-nav">
+			<div class="hm-inner clearfix">
+				<div class="hm-inner-l l">
+				</div>
+				<div class="hm-inner-r r">
+					<div class="box">
+						<a href="javascript:;" id="login" class="to-login">游客登录</a>
+						<a href="">【新用户注册】</a>
+						<div id="dialogBg"></div>
+						<div id="dialog" class="animated">
+							<img class="dialogIco" width="50" height="40" src="../Public/images/ico.png" />
+							<div class="dialogTop" style="height:25px;">
+								<a href="javascript:;" class="closeDialogBtn">关闭</a>
+							</div>
+							<form action="" method="post">
+								<ul class="editInfos">
+									<li>用户名：<input type="text" id="userName" name="userName"
+										class="ipt" /></li>
+									<li>密&nbsp;&nbsp;&nbsp;码：<input type="password"
+										id="userPass" name="userPass" class="ipt" /></li>
+									<li><input type="submit" value="登录" class="submitBtn" /></li>
+								</ul>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="hm-header">
+        <div class="hm-inner clearfix">
+            <div class="hm-header-t clearfix">
+                <h1 class="logo l">
+                    <a href="javascript:;"><img src="../Public/images/logo.png" 
+                    	height="64" width="168" alt="" /></a>    
+                </h1>
+                <div class="search-box l">
+                    <form action="javascript:;">
+                        <input type="text" class="txt l" placeholder="请输入关键字">
+                        <input type="button" value="搜索" class="btn l" />
+                    </form>
+                </div>    
+            </div>
+            <div class="hm-header-b">
+                <i class="hm-ico-home"></i>
+                <a href="index.html">首页</a><span>></span>注册页面
+            </div>
+        </div>
+    </div>
+    <div class="hm-body hm-body-bgc">
+        <div class="hm-inner">
+            <div class="reg-box">
+                <h2>用户注册<span>（红色型号代表必填）</span></h2>
+                <div class="reg-info">
+                    <form action="" method="post">
+                        <ul>
+                            <li>
+                                <div class="reg-l"><span class="red">*</span> 用户名：</div>
+                                <div class="reg-c">
+                                    <input type="text" id="userName" name="userName" class="txt" value=""/>
+                                </div>
+                                <span class="tips">用户名必须是由英文、数字、下划线组成</span>
+                            </li>
+                             <li>
+                                <div class="reg-l"><span class="red">*</span> 密&nbsp;&nbsp;&nbsp;码：</div>
+                                <div class="reg-c">
+                                    <input type="password" id="userPass" name="userPass" class="txt" value=""/>
+                                </div>
+                                <span class="tips">密码长度必须6~10位的英文或数字</span>
+                            </li>
+                            <li class="no-tips">
+                                <div class="reg-l">&nbsp;&nbsp;邮&nbsp;&nbsp;&nbsp;箱：</div> 
+                                <div class="reg-c"><input type="text" id="email" name="email" class="txt" value=""/></div>
+                            </li>
+                            <li>
+                                <div class="reg-l"></div>
+                                <div class="reg-c">
+                                    <input type="submit" class="submit-btn" value="注册" /><br/>
+                                    <span style="color:red;">用户名已经存在！</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>    
+                </div>
+            </div>
+        </div>
+    </div>
+		<!-- 底部 -->	
+		<div class="hm-footer" style="padding-top:10px;">
+			<div class="hm-inner">
+				<div class="hm-footer-cpr">
+					<p>Copyright@2006-2017 ITCAST. All Rights Reserved</p>
+					<p>传智播客 版权所有</p>
+				</div>
+			</div>
+		</div>
+</body>
+</html>
+<script type="text/javascript">
+	var w,h,className;
+	function getSrceenWH(){
+		w = $(window).width();
+		h = $(window).height();
+		$('#dialogBg').width(w).height(h);
+	}
+	
+	window.onresize = function(){  
+		getSrceenWH();
+	}  
+	$(window).resize();  
+	
+	$(function(){
+		getSrceenWH();
+		
+		//显示弹框
+		$('.box #login').click(function(){
+			className = $(this).attr('class');
+			$('#dialogBg').fadeIn(300);
+			$('#dialog').removeAttr('class').addClass('animated '+className+'').fadeIn();
+			$('#userName').focus();
+			$("#j_fixedBar").hide();
+		});
+		
+		//关闭弹窗
+		$('.closeDialogBtn').click(function(){
+			$('#dialogBg').fadeOut(300,function(){
+				$('#dialog').addClass('bounceOutUp').fadeOut();
+				$("#j_fixedBar").show();
+			});
+		});
+	});
+</script>

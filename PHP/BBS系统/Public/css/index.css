@@ -1,0 +1,330 @@
+/*论坛信息部分*/
+.hm-bbs-info {
+  border: 1px solid #E5E5E5;
+  background-color: #FAFAFA;
+  height: 98px;
+}
+.hm-bbs-icon {
+  width: 158px;
+  height: 98px;
+}
+.hm-bbs-icon span {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  left: 19px;
+  top: -42px;
+}
+.hm-bbs-info-in h2 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #333;
+  float: left;
+  padding-left: 1px;
+  height: 62px;
+  line-height: 62px;
+  margin-right: 20px;
+}
+.hm-bbs-info-in .gz-btn {
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  background: #FA8932;
+  color: #FFF;
+  border-radius: 2px;
+  font-weight: 400;
+  border: none;
+  padding: 0;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+.hm-bbs-info-in p {
+  top: -4px;
+  position: relative;
+}
+.hm-bbs-info-in p span {
+  margin-right: 10px;
+  font-size: 14px;
+  color: #B2B2B2;
+}
+.hm-bbs-info-in p strong {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #fe850f;
+}
+/*论坛导航部分*/
+.hm-bbs-nav {
+  background-color: #FEFEFE;
+  height: 53px;
+}
+.hm-bbs-nav li {
+  float: left;
+  height: 53px;
+}
+.hm-bbs-nav a {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0 18px 0 15px;
+  line-height: 36px;
+  background: url(../images/img01.png) right -22px no-repeat;
+  line-height: 52px;
+  display: block;
+  color: #333;
+  height: 53px;
+}
+.hm-bbs-nav li.current a {
+  background: #efefef;
+  border-right: 1px solid #E5E5E5;
+}
+.hm-bbs-nav li a em {
+  width: 22px;
+  height: 22px;
+  background: url(../images/img03.png) -68px -46px no-repeat;
+  vertical-align: middle;
+  display: inline-block;
+}
+/*论坛排序部分*/
+.hm-bbs-filter {
+  background-color: #fafafa;
+  height: 53px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.hm-bbs-filter span,
+.hm-bbs-sel {
+  float: left;
+  display: block;
+}
+.hm-bbs-filter span {
+  height: 32px;
+  line-height: 32px;
+  margin-top: 12px;
+}
+.hm-bbs-sel {
+  margin-top: 12px;
+}
+.hm-bbs-sel em {
+  height: 32px;
+  line-height: 30px;
+  padding: 0 8px;
+  display: block;
+  color: #fe850f;
+  border: 1px solid #fafafa;
+}
+.icon-arr {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../images/img02.png) -176px 3px no-repeat;
+  margin: 0 5px;
+}
+.hm-bbs-sel ul {
+  background-color: #fff;
+  display: none;
+  position: absolute;
+}
+.hm-bbs-sel ul li {
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid #E5E5E5;
+  border-top: none;
+  padding-left: 10px;
+  color: grey;
+  padding-right: 11px;
+}
+.hm-bbs-sel ul b.icon-seled {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../images/img02.png) -206px 3px no-repeat;
+  margin-left: 5px;
+  display: none;
+}
+.hm-bbs-sel ul li.current b.icon-seled {
+  display: inline-block;
+}
+.hm-bbs-sel:hover ul {
+  display: block;
+}
+a.hm-bbs-sel:hover em {
+  border: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+.hm-bbs-sel ul li:hover {
+  background-color: #fafafa;
+}
+/*主体部分左侧列表*/
+.hm-bbs-main .list-view {
+  border-right: 1px solid #e5e5e5;
+  width: 741px;
+  background-color: #fff;
+}
+/*主体部分和右侧侧边栏*/
+.hm-bbs-main .aside {
+  width: 236px;
+  background-color: #FAFAFA;
+}
+.list-view li {
+  padding: 8px 5px 1px 15px;
+  border-bottom: 1px solid #EEE;
+  overflow: hidden;
+}
+.list-view .set-to-top {
+  border: 1px solid #FA8932;
+  font-size: 12px;
+  min-width: 14px;
+  height: 16px;
+  line-height: 17px;
+  margin: 0 2px 0 0;
+  vertical-align: middle;
+  padding: 0 1px;
+  color: #FA8932;
+  display: none;
+  text-align: center;
+}
+.hm-index-title {
+  padding: 4px 0;
+}
+.hm-index-title a {
+  font-size: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #576b95;
+}
+.hm-index-title .ans {
+  color: #fa8932;
+  margin: 0 2px;
+  border: 1px solid #fa8932;
+  font-size: 12px;
+  min-width: 14px;
+  height: 16px;
+  line-height: 17px;
+  vertical-align: middle;
+  padding: 0 1px;
+  display: none;
+}
+.hm-index-con {
+  font-size: 14px;
+  margin: 5px 0 0;
+  color: grey;
+  line-height: 22px;
+  height: 22px;
+  overflow: hidden;
+  max-width: 712px;
+}
+.hm-index-info {
+  height: 35px;
+  line-height: 31px;
+  color: #B3B3B3;
+}
+.hm-index-info .post-time {
+  margin-left: 10px;
+}
+.hm-index-fun {
+  height: 35px;
+  line-height: 31px;
+}
+.hm-index-fun span {
+  float: left;
+  margin-right: 20px;
+  margin-left: 5px;
+}
+.hm-index-fun .icon-like i,
+.hm-index-fun .icon-talk i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  background: url(../images/img02.png) 0 0 no-repeat;
+  vertical-align: middle;
+  margin-top: -2px;
+}
+.hm-index-fun .icon-talk {
+  margin-right: 0;
+  padding-right: 10px;
+}
+.hm-index-fun .icon-talk i {
+  background-position: -16px 0;
+}
+.ding .set-to-top {
+  display: inline-block;
+}
+.ding .hm-index-con {
+  display: none;
+}
+.hm-index-title a:hover {
+  text-decoration: underline;
+}
+.bz-ans .ans {
+  display: inline-block;
+}
+.ding .hm-index-title a {
+  color: #fa8932;
+}
+.hm-index-imgs {
+  margin-top: 8px;
+}
+.hm-index-img {
+  width: 100px;
+  height: 100px;
+  background: url(../images/list-imgs.jpg) center 0 no-repeat;
+  float: left;
+  margin-right: 10px;
+}
+/*右侧侧边栏*/
+.aside-box {
+  border-bottom: 1px solid #eee;
+}
+.aside-box .t {
+  height: 35px;
+  line-height: 35px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  padding-left: 10px;
+  margin-top: 3px;
+  font-weight: 700;
+}
+.aside-box .t a {
+  color: #333;
+}
+.aside-box .b li {
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+.aside-box .b li img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.aside-box .b li p {
+  margin: 8px 0 15px;
+}
+.index-page-box {
+  padding: 23px 15px;
+  border-bottom: 1px solid #EEE;
+}
+.index-page-box span,
+.index-page-box a,
+.index-page-box p {
+  float: left;
+}
+.index-page-box span.current {
+  background: #ededed;
+}
+.index-page-box span,
+.index-page-box a {
+  border: 1px solid #d9d9d9;
+  color: #333;
+  margin: 0 0 0 4px;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 6px;
+  display: block;
+}
+.index-page-box p span {
+  border: 0;
+}
+
