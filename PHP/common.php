@@ -291,6 +291,103 @@ $ll=my_dbname($link,$arr);
 
 
 
+/*
+*数据库使用的封装(面向对象的方法来实现)
+*/
+class DB{
+	//定义属性
+    private $host = '';
+    private $port = '';
+    private $user = '';
+    private $pwd = '';
+    private $charset = '';
+    private $db = '';
+    private $link =null;
+    private $sql = '';
+
+    public function __construct($config){
+    	//完成的属性的初始化
+    	$this->host=isset($config['host'])?$config['host']:'127.0.0.1';
+    	$this->port=isset($config['port'])?$config['port']:'3306';
+    	$this->user=isset($config['user'])?$config['user']:'root';
+    	$this->pwd=isset($config['pwd'])?$config['pwd']:'';
+    	$this->charset=isset($config['charset'])?$config['charset']:'utf8';
+    	$this->db=isset($config['db'])?$config['db']:'';
+    	//
+    	$this->connect();
+    	$this->setChar();
+    	$this->useDB();
+    }
+    //封装数据库连接方法
+    private function connect(){
+    	$this->link = mysqli_connect($this->host,$this->user,$this->pwd);
+    }
+
+    //封装设置客户端字符集的方法
+    private function setChar(){
+    	mysqli_query($this->link,"set names $this->charset");
+    }
+
+    //封装方法用于选择数据库
+    private function useDB(){
+    	mysqli_query($this->link,"use $this->db");
+    }
+
+    //封装一个通用的执行sql的方法
+    private function query($sql){
+    	//将执行的仍然sql都保存到sql这个属性中
+    	$this->sql = $sql;
+    	$result = mysqli_query($this->link,$sql);
+    	//判断是否有错误
+    	if(mysqli_errno($this->link)){
+    		echo 'SQL语句出错,错误信息如下:<br/>';
+    		echo '错误代码为：',mysqli_errno($this->link),'<br/>';
+    		exit;
+    	}
+    	return $result;
+    }
+    //封装一个获取一行的方法
+    public function getOne($sql){
+    	return mysqli_fetch_assoc($this->query($sql));
+    }
+
+    //封装一个获取多行的方法
+    public function getRows($sql){
+    	$result = $this->query($sql);
+    	$data = [];
+    	while($row = mysqli_fetch_assoc($result)){
+    		$data[]=$row;
+    	}
+    	return $data;
+    }
+
+    //封装一个增、删、改的方法
+    public function exec($sql){
+    	$return = $this->query($sql);
+    	return mysqli_affected_rows($this->link);
+    }
+
+    //封装一个获取新增记录id的方法
+    public function getLastId(){
+    	return mysqli_insert_id($this->link);
+    }
+
+    //获取最近执行的一条sql语句
+   	public function __tostring(){
+   		return $this->sql;
+   	}
+
+}
+//使用者
+$config=[
+	'user' => 'root',
+	'pwd' => '123',
+	'db' => 'php9'
+];
+$obj = new DB($config);
+
+
+
 
 
 
