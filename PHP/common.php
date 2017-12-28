@@ -385,6 +385,22 @@ $config=[
 	'db' => 'php9'
 ];
 $obj = new DB($config);
+//单例模式(三私一公)
+ class singleton{
+     private static $obj =null;
+     private function __clone(){
+
+    }
+    private  function  __construct(){
+
+    }
+    public static function getInster(){
+          if(!self::$obj){
+            self::$obj =new self();
+        }
+		return self::$obj;
+     }
+ }
 
 
 
