@@ -401,6 +401,25 @@ $obj = new DB($config);
 		return self::$obj;
      }
  }
+ 
+ //单例工厂模式
+ class  factory{
+     private static $obj =null;
+    public static function getobj($cls){
+       if(!isset(self::$obj[$cls])){
+         self::$obj[$cls] = new $cls;
+       }
+       return self::$obj[$cls];
+     }
+ }
+ class a{}
+ class b{}
+ $obja =factory::getobj('a');
+ var_dump($obja);
+ $obja =factory::getobj('a');
+ var_dump($obja);
+ $objb =factory::getobj('b');
+ var_dump($objb);
 
 
 
