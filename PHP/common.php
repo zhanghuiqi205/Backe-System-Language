@@ -421,9 +421,6 @@ $obj = new DB($config);
  $objb =factory::getobj('b');
  var_dump($objb);
  
-function sstr(){
-    echo 1234;
-}
 
 
 
