@@ -420,7 +420,9 @@ $obj = new DB($config);
  var_dump($obja);
  $objb =factory::getobj('b');
  var_dump($objb);
- 
+ function sttr(){
+     echo 1234;
+ }
 
 
 
