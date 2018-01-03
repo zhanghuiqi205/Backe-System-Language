@@ -419,8 +419,11 @@ $obj = new DB($config);
  $obja =factory::getobj('a');
  var_dump($obja);
  $objb =factory::getobj('b');
- var_dump($objb);   
-
+ var_dump($objb);
+ 
+function sstr(){
+    echo 1234;
+}
 
 
 
