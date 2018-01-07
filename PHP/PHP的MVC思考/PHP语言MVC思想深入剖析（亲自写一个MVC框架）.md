@@ -168,7 +168,8 @@
 ```
 我们执行上面的代码，生成如下的目录：
 ![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/images/two.png)
-7. 当我们刚进入我们的项目中，如果地址栏没有传入我们对应的参数，我们会给三个参数一个默认值：也就是找到home文件下面的的indexController类里面的方法index。
+
+7.当我们刚进入我们的项目中，如果地址栏没有传入我们对应的参数，我们会给三个参数一个默认值：也就是找到home文件下面的的indexController类里面的方法index。
 ```
 <?php
 namespace Controller;
@@ -179,7 +180,8 @@ class indexController{
 }
 ```
 我们为了代码的可维护性。我们对命名空间规定一个原则，属于核心或者父类的方法，放在core中，定义空间名为core，属于控制器层面的，定义为Controller,属于模型类的，我们定义命名空间为Model,属于视图的我们定义为View空间名.
-8. 因为我们实际项目中操作数据库更多的使用PDO来操作，那么我们在模型类中这样来定义代码：
+
+8.因为我们实际项目中操作数据库更多的使用PDO来操作，那么我们在模型类中这样来定义代码：
 
 ```
 <?php
