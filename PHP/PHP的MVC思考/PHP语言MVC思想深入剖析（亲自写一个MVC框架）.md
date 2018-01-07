@@ -10,7 +10,8 @@
 4. 建立一个index.php作为唯一入口，所有对使用程序的访问都是必须通过这个入口。约定我们的url规则，这是我们能够实现MVC很重要的一点。我们能够准确找到文件，找到类，找到方法，都是通过我们约定好的规则实现的。比如：我们约定index.php?g=xxx&c=xxx?a=xxx.
    - [x] g:选择的文件目录：比如访问的是前台文件(home)还是后台(admin)的文件.
    - [x] c:文件目录中的类的文件，准确的找到我们需要的类.
-   - [x] a:找到类中我们请求的方法.![image](https://note.youdao.com/favicon.ico)
+   - [x] a:找到类中我们请求的方法.
+![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/images/one.png)
 5. 开始书写我们的核心文件，也就是我们准备工作前的准备工作。比如定义一些常用的方法，比如设置全局配置信息，创建目录结构的方法，定义目录常量，设置查找文件的分发事件函数(注册为自动执行事件)......
 ```
     index文件的代码：
@@ -165,7 +166,8 @@
     }
     
 ```
-我们执行上面的代码，生成如下的目录：![image](https://note.youdao.com/favicon.ico)
+我们执行上面的代码，生成如下的目录：
+![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/images/two.png)
 7. 当我们刚进入我们的项目中，如果地址栏没有传入我们对应的参数，我们会给三个参数一个默认值：也就是找到home文件下面的的indexController类里面的方法index。
 ```
 <?php
@@ -239,5 +241,6 @@ class Controller{
     }
 }
 ```
-11. 我们按照上述所说的思路，就完成了一个基本功能的MVC框架，我们把核心类放在我们的Core文件，其他类和各自的对应的模型，视图放在各自对应的文件，书写各自的逻辑代码就可以。一个简单的MVC，我们就书写完了。我书写了几个类别，给大家看看![image](https://note.youdao.com/favicon.ico)
+11. 我们按照上述所说的思路，就完成了一个基本功能的MVC框架，我们把核心类放在我们的Core文件，其他类和各自的对应的模型，视图放在各自对应的文件，书写各自的逻辑代码就可以。一个简单的MVC，我们就书写完了。我书写了几个类别，给大家看看
+![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/images/three.png)
 12. 我们书写这个MVC框架用到的知识有：模板，pdo，命名空间，PHP基础的知识，PHP面向对象的知识。大家抽空也可以自己看看出名框架的源码，试着自己去分析一下源码。大体的思想都是相似的。
