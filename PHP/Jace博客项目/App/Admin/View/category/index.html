@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>拼图后台管理-后台管理</title>
+    <link rel="stylesheet" href="/Public/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/Public/admin/css/admin.css">
+    <script src="/Public/admin/js/jquery.js"></script>
+    <script src="/Public/admin/js/pintuer.js"></script>
+    <script src="/Public/admin/js/respond.js"></script>
+    <script src="/Public/admin/js/admin.js"></script>
+    <script src="/public/layui/layui.all.js"></script>
+    <link rel="stylesheet" href="/public/layui/css/layui.css">
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+<div class="lefter">
+    <div class="logo"><a href="#" target="_blank"><img src="/Public/admin/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+
+
+<{include file="../common/menu.html" active=2 sub=2001}>
+
+
+
+        <div class="admin-bread">
+            <span>您好，<{$smarty.session.userInfo['a_name']}>，欢迎您的光临。</span>
+            <ul class="bread">
+                <li><a href="index.php?g=admin&c=index&a=index" class="icon-home"> 开始</a></li>
+                <li><a href="index.php?g=admin&c=category&a=index">类别管理</a></li>
+                <li>所有类别</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="admin">
+	<form method="post">
+    <div class="panel admin-panel">
+    	<div class="panel-head"><strong>内容列表</strong></div>
+        <div class="padding border-bottom">
+            <input type="button" class="button button-small border-green" value="添加分类" onclick="location.href='index.php?g=admin&c=category&a=add'" />
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="200">类别</th>
+                    <th width="300">描述</th>
+                    <th width="200">时间</th>
+                    <th width="200">排序</th>
+                    <th width="100">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            <{foreach $cate as $item}>
+                <tr>
+                    <td style="text-align:left;"><{str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$item.lv)}><{$item.c_name}></td>
+                    <td><{$item.c_desc}></td>
+                    <td><{$item.c_time|date_format:'y-m-d h:i:s'}></td>
+                    <td><{$item.c_sort}></td>
+                    <td>
+                        <a class="button border-blue button-little" href="index.php?g=admin&c=category&a=modify&id=<{$item.c_id}>">修改</a> 
+                        <a class="button border-yellow button-little" onclick="delNews('<{$item.c_id}>')">删除</a>
+                    </td>
+                </tr>
+            <{/foreach}>
+            </tbody>
+        </table>
+    </div>
+    </form>
+    <br />
+    <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+
+</body>
+<script>
+    function delNews(id){
+        layer.alert('',{icon:2,title:'删除确认',content:'您确定要删除这条记录吗？',closeBtn:1},function(index){
+            window.location.href ="index.php?g=admin&c=category&a=del&id="+id;
+            layer.close(index);
+        });
+    }
+</script>
+</html>

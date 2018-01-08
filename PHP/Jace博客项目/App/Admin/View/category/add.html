@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>拼图后台管理-后台管理</title>
+<link rel="stylesheet" href="/Public/admin/css/pintuer.css">
+<link rel="stylesheet" href="/Public/admin/css/admin.css">
+<script src="/Public/admin/js/jquery.js"></script>
+<script src="/Public/admin/js/pintuer.js"></script>
+<script src="/Public/admin/js/respond.js"></script>
+<script src="/Public/admin/js/admin.js"></script>
+<link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+<link href="/favicon.ico" rel="bookmark icon" />
+</head>
+
+<body>
+<div class="lefter">
+  <div class="logo"><a href="#" target="_blank"><img src="/Public/admin/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+
+<{include file="../common/menu.html" active=2 sub=2002}>
+
+    <div class="admin-bread"> <span>您好，<{$smarty.session.userInfo['a_name']}>，欢迎您的光临。</span>
+      <ul class="bread">
+        <li><a href="index.php?g=admin&c=index&a=index" class="icon-home"> 开始</a></li>
+        <li><a href="index.php?g=admin&c=category&a=index">类别管理</a></li>
+        <li>添加分类</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="admin">
+  <div class="tab">
+    <div class="tab-head"> <strong>分类管理</strong>
+      <ul class="tab-nav">
+        <li class="active"><a href="#tab-set">添加分类</a></li>
+      </ul>
+    </div>
+    <div class="tab-body"> <br />
+      <div class="tab-panel active" id="tab-set">
+        <form method="post" class="form-x" action="index.php">
+         <input type="hidden" name="g" value="admin">
+         <input type="hidden" name="c" value="category">
+         <input type="hidden" name="a" value="store">
+          <div class="form-group">
+            <div class="label">
+              <label for="cname">分类名称</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="cname" name="cname" size="50" placeholder="类别名称" data-validate="required:请填写类别名称" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              <label for="pid">所属分类</label>
+            </div>
+            <div class="field">
+              <select class="input" id="pid" name="pid" style="width:20%">
+                 
+                <option value="0">主类别</option>
+                <{foreach $cate as $v}>
+                <option value="<{$v.c_id}>"><{str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v.lv)}><{$v.c_name}></option>
+                <{/foreach}>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              <label for="cdesc">描述</label>
+            </div>
+            <div class="field">
+              <textarea class="input" name="cdesc" id="cdesc" rows="5" cols="50" placeholder="描述" data-validate="required:请填写分类描述"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="label">
+              <label for="csort">排序</label>
+            </div>
+            <div class="field">
+              <input type="text" class="input" id="csort" name="csort" size="50" placeholder="50" data-validate="required:请填写分类排序" />
+            </div>
+          </div>
+          <div class="form-button">
+            <button class="button bg-main" type="submit">提交</button>
+          </div>
+        </form>
+      </div>
+      <div class="tab-panel" id="tab-email">邮件设置</div>
+      <div class="tab-panel" id="tab-upload">上传设置</div>
+      <div class="tab-panel" id="tab-visit">访问限制</div>
+    </div>
+  </div>
+  <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>拼图后台管理-后台管理</title>
+    <link rel="stylesheet" href="/Public/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/Public/admin/css/admin.css">
+    <script src="/Public/admin/js/jquery.js"></script>
+    <script src="/Public/admin/js/pintuer.js"></script>
+    <script src="/Public/admin/js/respond.js"></script>
+    <script src="/Public/admin/js/admin.js"></script>
+    <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
+    <link href="/favicon.ico" rel="bookmark icon" />
+    <script>
+        
+    </script>
+</head>
+
+<body>
+<div class="lefter">
+    <div class="logo"><a href="#" target="_blank"><img src="/Public/admin/images/logo.png" alt="后台管理系统" /></a></div>
+</div>
+
+<{include file="../common/menu.html" active=3 sub=3001}>
+
+        <div class="admin-bread">
+            <span>您好，<{$smarty.session.userInfo['a_name']}>，欢迎您的光临。</span>
+            <ul class="bread">
+                <li><a href="index.html" class="icon-home"> 开始</a></li>
+                <li>文章管理</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="admin">
+	
+    <div class="panel admin-panel">
+    	<div class="panel-head"><strong>文章列表</strong></div>
+        <div class="padding border-bottom">
+            <input type="button" class="button button-small checkall" name="checkall" checkfor="id[]" value="全选" />
+            <input type="button" id="btnAdd" class="button button-small border-green" value="添加文章" onclick="location.href='index.php?g=admin&c=article&a=add'"/>
+            <input type="submit" class="button button-small border-yellow" onclick="delMult()" value="批量删除" />
+            <input type="button" class="button button-small border-blue" value="回收站" />
+        </div>
+        <table class="table table-hover">
+        	<tr>
+                <th width="45">选择</th>
+                <th width="120">所属类别</th>
+                <th width="*">文章标题</th>
+                <th width="120">点击率</th>
+                <th width="180">发布时间</th>
+                <th width="240">操作</th>
+            </tr>
+            <{foreach $art as $v}>
+            <tr>
+                <td><input type="checkbox" name="ids" value="<{$v.a_id}>" /></td>
+                <td><{$v.c_name}></td>
+                <td><{$v.a_title}></td>
+                <td><{$v.a_click}></td>
+                <td><{$v.a_time|date_format:'y-m-d h:i:s'}></td>
+                <td>
+                    <{if $v.a_recommend eq 0}>
+                    <a class="button border-red button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>">推荐</a>
+                    <{else}> 
+                    <a class="button border-green button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>">取消推荐</a>
+                    <{/if}> 
+                    <a class="button border-blue button-little" href="#">修改</a> 
+                    <a class="button border-yellow button-little" href="index.php?g=admin&c=article&a=del&id=<{$v.a_id}>" onclick="return confirm('确认删除么？');">删除</a>
+                </td>
+            </tr>
+            <{/foreach}>
+        </table>
+    </div>
+  
+    <br />
+    <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
+</div>
+
+</body>
+<script>
+    function delMult(){
+        if(!confirm('确认删除么？')) {
+            return false;
+        }
+        var objindex =document.getElementsByName('ids');
+        var ids='';
+        for (let index = 0; index < objindex.length; index++) {
+            if(objindex[index].checked){
+                 ids+=objindex[index].value+',';
+            }  
+        }
+        ids=ids.substring(0,ids.length-1);
+        window.location.href="index.php?g=admin&c=article&a=del&id="+ids;
+    }
+</script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+   .ds-replybox img {
+    float:left;
+    width:76px;
+    height:76px;
+  }
+  textarea {
+    box-shadow: none;
+    color: #999;
+    height: 54px;
+    margin: 0;
+    overflow: auto;
+    padding: 10px;
+    resize: none;
+    width: 80%;
+    margin-left:10px;
+  }
+  button {
+    margin-top:10px;
+    margin-left:85px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 32px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    transition: all 0.15s linear 0s;
+    width: 100px;
+  }
+  .otherlink dl {
+    display:block;
+    width:100%;
+    height:65px;
+    padding:20px 0;
+    border-bottom:1px #DEDEDE solid;
+  }
+  .otherlink dt {
+    float:left;
+  }
+  .otherlink h3 {
+    color:#D23;
+  }
+  .otherlink h3,.otherlink p {
+    line-height:22px;
+    text-indent:10px;
+  }
+  .otherlink .msg {
+     color:#333;
+  }
+  .otherlink .addtime {
+     color:#999;
+  }
+  .logform input {
+    width:140px;
+    height:30px;
+  }
+</style>
+</head>
+<body>
+    <h2>评论列表</h2>
+
+	<div class="otherlink">
+        <div style="border-radius:5px;margin:5px;border:1px solid gray;">
+
+
+            <img src="" alt="">
+            <div style="position:relative;overflow:"> <h3>评论者：<{$v.u_id}></h3>
+              <p>评论内容：<{$v.r_content}></p>
+              <p>评论时间：<{$v.r_time|date_format:'Y-m-d'}></p>
+              <a href="javascript:void()" style="position:relative;left:500px;" onclick="this.nextSibling.style.display='block'">回复</a><div style="border-radius:5px;border:1px solid gray;margin:5px;display:none;">
+                <form action="index.php" method="post">
+                <input type="hidden" name="g" value="home">
+                <input type="hidden" name="c" value="Article">
+                <input type="hidden" name="a" value="addComment">
+                <input type='hidden' name='userid' value='<{$smarty.session.customer.u_id|default:0}>' />
+                <input type="hidden" name="artid" value="<{$article.a_id}>">
+                <input type="hidden" name="r_id" value="<{$v.r_id}>">
+                <label>回复内容:</label><br/>
+                <textarea name="content">
+                
+                </textarea>
+                <br/>
+                <input type="submit" value="回复">
+                </form>
+              </div>
+            <div style="clear:both; height:10px;"></div>
+            
+            </div>
+            </div>
+
+          </div>
+</body>
+</html>

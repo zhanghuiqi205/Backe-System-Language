@@ -1,0 +1,36 @@
+<div class="righter nav-navicon" id="admin-nav">
+    <div class="mainer">
+        <div class="admin-navbar"> <span class="float-right"> <a class="button button-little bg-main" href="index.php?g=home&c=index&a=index">前台首页</a> <a class="button button-little bg-yellow" href="index.php?g=admin&c=privilege&a=logout">注销登录</a> </span>
+  <ul class="nav nav-inline admin-nav">
+    <li <{if $active eq 1}>class="active"<{/if}>><a href="index.php?g=admin&c=index&a=index" class="icon-home"> 开始</a>
+      <ul>
+        <li <{if $sub eq 1001}>class="active"<{/if}>><a href="index.php?g=admin&c=category&a=index">类别管理</a></li>
+        <li <{if $sub eq 1002}>class="active"<{/if}>><a href="index.php?g=admin&c=article&a=index">文章管理</a></li>
+        <li <{if $sub eq 1003}>class="active"<{/if}>><a href="#">相册管理</a></li>
+        <li <{if $sub eq 1004}>class="active"<{/if}>><a href="#">站长信息</a></li>
+        <li <{if $sub eq 1005}>class="active"<{/if}>><a href="#">关于我</a></li>
+        <li <{if $sub eq 1006}>class="active"<{/if}>><a href="#">栏目管理</a></li>
+      </ul>
+    </li>
+    <li <{if $active eq 2}>class="active"<{/if}>><a href="index.php?g=admin&c=category&a=index" class="icon-cog">类别管理</a>
+      <ul>
+        <li <{if $sub eq 2001}>class="active"<{/if}>><a href="index.php?g=admin&c=category&a=index">所有类别</a></li>
+        <li <{if $sub eq 2002}>class="active"<{/if}>><a href="index.php?g=admin&c=category&a=add">添加类别</a></li>
+      </ul>
+    </li>
+    <li <{if $active eq 3}>class="active"<{/if}>><a href="index.php?g=admin&c=article&a=index" class="icon-file-text"> 文章管理</a>
+      <ul>
+        <li <{if $sub eq 3001}>class="active"<{/if}>><a href="index.php?g=admin&c=article&a=index">文章列表</a></li>
+        <li <{if $sub eq 3002}>class="active"<{/if}>><a href="index.php?g=admin&c=article&a=add">添加文章</a></li>
+      </ul>
+    </li>
+    <li <{if $active eq 4}>class="active"<{/if}>><a href="#" class="icon-shopping-cart"> 相册管理</a>
+      <ul>
+        <li <{if $sub eq 4001}>class="active"<{/if}>><a href="#">添加相片</a></li>
+      </ul>
+    </li>
+    <li <{if $active eq 5}>class="active"<{/if}>><a href="#" class="icon-user"> 站长信息</a></li>
+    <li <{if $active eq 6}>class="active"<{/if}>><a href="#" class="icon-file"> 关于我</a></li>
+    <li <{if $active eq 7}>class="active"<{/if}>><a href="#" class="icon-th-list"> 栏目管理</a></li>
+  </ul>
+</div>
