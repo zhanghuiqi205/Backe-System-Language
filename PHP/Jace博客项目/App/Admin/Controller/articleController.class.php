@@ -7,12 +7,56 @@ use \Model\categoryModel;
 use \Model\articleModel;
 use Core\fileupload;
 use \core\myImage;
+use \Core\pagination;
 
 class articleController extends commonController{
     
-    public function recommend(){
+
+    //文章列表和分页的实现
+    public function index(){
+        $art = new articleModel();
+
+        $curPage =isset($_GET['curPage'])?$_GET['curPage']:1;
+        $rowsPerPage = $GLOBALS['config']['rowsPerPage'];
+        $url ="index.php?g=admin&c=article&a=index";
+        $totalRows = $art->getTotalRows();
+        $page =new pagination();
+
+
+
+
+        $pageString=$page->getpage($totalRows,$rowsPerPage,$curPage,$url);
+
+        $data= $art ->getAllArt($curPage,$rowsPerPage);
+        $this->assign('curPage',$curPage);
+        $this->assign('art',$data);
+        $this->assign('pageString',$pageString);
+        $this ->display("index.html");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //推荐和取消推荐
+    public function recommend(){  
         $a_id =isset($_GET['id'])?$_GET['id']:0;
-        
+        $curPage =isset($_GET['curPage'])?$_GET['curPage']:1;
         if(!$a_id){
              $this->error('非法操作','index.php?g=admin&c=article&a=index');
              exit;
@@ -23,14 +67,8 @@ class articleController extends commonController{
             $this->error('操作出错','index.php?g=admin&c=article&a=index');
             exit; 
         }
-        header("location:index.php?g=admin&c=article&a=index");
+        header("location:index.php?g=admin&c=article&a=index&curPage=$curPage");
     }
-
-
-
-
-
-
     //添加文章的页面数据
     public function store(){
         //添加文章传递过来的数据，提交到文章表
@@ -80,22 +118,11 @@ class articleController extends commonController{
         }else{
             //写错误日志
         }
-
-
-    }
-
-    //文章列表
-    public function index(){
-        
-        $cat = new articleModel();
-        $data= $cat ->getAllArt();
-        $this->assign('art', $data);
-        $this ->display("index.html");
-
     }
     //添加文章页面的展示
     public function add(){
         $cat = new  categoryModel();
+
         $data = $cat ->getAllCate();
         $this->assign('cate', $data);
         $this ->display("add.html");
@@ -103,16 +130,27 @@ class articleController extends commonController{
     //删除文章和批量删除
     public function del(){
         $a_id =isset($_GET['id'])?$_GET['id']:0;
-
+        $curPage =isset($_GET['curPage'])?$_GET['curPage']:1;
         if(!$a_id){
            $this->error('非法操作','index.php?g=admin&c=article&a=index');
-        }
+        }   
         $art = new articleModel();
         $return = $art->delArt($a_id);
         if (!$return) {
             $this->error('删除失败','index.php?g=admin&c=article&a=index');
             exit;
         }
-        header('location:index.php?g=admin&c=article&a=index');
+        header("location:index.php?g=admin&c=article&a=index&curPage=$curPage");
+    }
+    //修改文章的方法
+    public function modify(){
+        $a_id =isset($_GET['id'])?$_GET['id']:0;
+        if(!$a_id){
+           $this->error('非法操作','index.php?g=admin&c=article&a=index');
+        }
+        $art = new articleModel();
+        $data = $art->modify($a_id);
+        $this->assign('cate', $data);
+        $this ->display("modify.html");
     }
 }

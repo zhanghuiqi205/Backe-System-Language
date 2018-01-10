@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
     <title>拼图后台管理-后台管理</title>
+    <link rel="stylesheet" href="/Public/admin/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/Public/admin/css/pintuer.css">
     <link rel="stylesheet" href="/Public/admin/css/admin.css">
     <script src="/Public/admin/js/jquery.js"></script>
@@ -64,16 +65,26 @@
                 <td><{$v.a_time|date_format:'y-m-d h:i:s'}></td>
                 <td>
                     <{if $v.a_recommend eq 0}>
-                    <a class="button border-red button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>">推荐</a>
+                    <a class="button border-red button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>&curPage=<{$curPage}>">推荐</a>
                     <{else}> 
-                    <a class="button border-green button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>">取消推荐</a>
+                    <a class="button border-green button-little" href="index.php?g=admin&c=article&a=recommend&id=<{$v.a_id}>&curPage=<{$curPage}>">取消推荐</a>
                     <{/if}> 
-                    <a class="button border-blue button-little" href="#">修改</a> 
-                    <a class="button border-yellow button-little" href="index.php?g=admin&c=article&a=del&id=<{$v.a_id}>" onclick="return confirm('确认删除么？');">删除</a>
+                    <a class="button border-blue button-little" href="index.php?g=admin&c=article&a=modify&id=<{$v.a_id}>">修改</a> 
+                    <a class="button border-yellow button-little" href="index.php?g=admin&c=article&a=del&id=<{$v.a_id}>&curPage=<{$curPage}>" onclick="return confirm('确认删除么？');">删除</a>
                 </td>
             </tr>
             <{/foreach}>
-        </table>
+            <tfoot>
+                    <tr>
+                        <td colspan='6'>
+                            <ul class="pagination" style="text-align:center;">
+                                <{$pageString}>
+                            </ul>
+                        </td>
+                    </tr>
+            </tfoot>
+           
+        </table> 
     </div>
   
     <br />
@@ -94,7 +105,7 @@
             }  
         }
         ids=ids.substring(0,ids.length-1);
-        window.location.href="index.php?g=admin&c=article&a=del&id="+ids;
+        window.location.href="index.php?g=admin&c=article&a=del&curPage=<{$curPage}>&id="+ids;
     }
 </script>
 </html>

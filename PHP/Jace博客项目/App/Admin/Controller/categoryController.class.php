@@ -97,7 +97,6 @@ class categoryController extends commonController {
 
         $data = $cat ->getAllCate(0,$c_id);
         $this->assign('cates', $data);
-
         $this -> display('modify.html'); 
     }
 

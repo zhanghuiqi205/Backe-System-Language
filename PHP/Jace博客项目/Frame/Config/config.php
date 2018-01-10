@@ -14,7 +14,7 @@ return array(
             'prefix'=>'blog_'			
 			),
         //分页，一页显示多少条记录
-        'rowsPerPage'=>5,
+        'rowsPerPage'=>2,
         //验证码相关的匹配
         'width'=>100,
         'height'=>32,
