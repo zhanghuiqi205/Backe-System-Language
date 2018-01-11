@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="gb2312">
+<title>黑色Html5响应式个人博客模板——主题《如影随形》</title>
+<meta name="keywords" content="个人博客模板,博客模板,响应式" />
+<meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
+<link href="./public/home/css/base.css" rel="stylesheet">
+<link href="./public/home/css/style.css" rel="stylesheet">
+<link href="./public/home/css/media.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+<style type="text/css">
+   .ds-replybox img {
+    float:left;
+    width:76px;
+    height:76px;
+  }
+  textarea {
+    box-shadow: none;
+    color: #999;
+    height: 54px;
+    margin: 0;
+    overflow: auto;
+    padding: 10px;
+    resize: none;
+    width: 80%;
+    margin-left:10px;
+  }
+  button {
+    margin-top:10px;
+    margin-left:85px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 32px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+    transition: all 0.15s linear 0s;
+    width: 100px;
+  }
+  .otherlink dl {
+    display:block;
+    width:100%;
+    height:65px;
+    padding:20px 0;
+    border-bottom:1px #DEDEDE solid;
+  }
+  .otherlink dt {
+    float:left;
+  }
+  .otherlink h3 {
+    color:#D23;
+  }
+  .otherlink h3,.otherlink p {
+    line-height:22px;
+    text-indent:10px;
+  }
+  .otherlink .msg {
+     color:#333;
+  }
+  .otherlink .addtime {
+     color:#999;
+  }
+  .logform input {
+    width:140px;
+    height:30px;
+  }
+</style>
+</head>
+<body>
+<div class="ibody">
+
+  <{include file="../common/menu.html" active=3}>
+
+  <article>
+    <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
+    <div class="index_about">
+      <h2 class="c_titile"><{$data.a_title}></h2>
+      <p class="box_c"><span class="d_time">发布时间：<{$data.a_time|date_format:'Y-m-d H:i:s'}></span><span>编辑：杨青</span><span>浏览（<{$data.a_click}>）</span><span>评论数（14）</span></p>
+      <ul class="infos">
+       <{$data.a_content}>
+      </ul>
+      <div class="keybq">
+        <p><span>关键字词</span>：黑色,个人博客,时间轴,响应式</p>
+      </div>
+      <div class="nextinfo">
+        <{if $pre==false}>
+        <p>上一篇：<a href="#">没有了</a></p>
+        <{else}>
+        <p>上一篇：<a href="index.php?c=article&a=view&a_id=<{$pre.a_id}>"><{$pre.a_title}></a></p>
+        <{/if}>
+        <{if $next==false}>
+        <p>下一篇：<a href="#">没有了</a></p>
+        <{else}>
+        <p>下一篇：<a href="index.php?c=article&a=view&a_id=<{$next.a_id}>"><{$next.a_title}></a></p>
+        <{/if}>
+      </div>
+      <div class="otherlink">
+        <h2>相关文章</h2>
+        <ul>
+          <li><a href="/news/s/2013-07-25/524.html" title="现在，我相信爱情！">现在，我相信爱情！</a></li>
+          <li><a href="/newstalk/mood/2013-07-24/518.html" title="我希望我的爱情是这样的">我希望我的爱情是这样的</a></li>
+          <li><a href="/newstalk/mood/2013-07-02/335.html" title="有种情谊，不是爱情，也算不得友情">有种情谊，不是爱情，也算不得友情</a></li>
+          <li><a href="/newstalk/mood/2013-07-01/329.html" title="世上最美好的爱情">世上最美好的爱情</a></li>
+          <li><a href="/news/read/2013-06-11/213.html" title="爱情没有永远，地老天荒也走不完">爱情没有永远，地老天荒也走不完</a></li>
+          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
+        </ul>
+      </div>
+
+    <div style="clear:both; height:10px;"></div>
+      <div class="otherlink">
+          <h2>评论列表</h2>
+          <dl>
+            <dt><img src="" alt=""></dt>
+            <dd>
+              <h3>评论者</h3>
+              <p>评论内容</p>
+              <p>评论时间：</p>
+            </dd>
+          </dl>
+          <dl>
+            <dt><img src="" alt=""></dt>
+            <dd>
+              <h3>评论者</h3>
+              <p>评论内容</p>
+              <p>评论时间：</p>
+            </dd>
+          </dl>
+      </div>
+    <div style="clear:both; height:10px;"></div>
+     <div class="otherlink">
+        <h2>发布评论</h2>
+      </div>
+      <div style="clear:both; height:10px;"></div>
+      <{if isset($smarty.session.user.id)}>
+         欢迎您<{$smarty.session.user.username}>回来
+         <a href="index.php?c=User&a=logout">退出</a>
+      <{else}>
+      <form class="logform" action="index.php?c=article&a=check" method="post">
+        用户名：<input type="text" name="username" />&nbsp;&nbsp;密码：<input type="password" name="password" />&nbsp;&nbsp;
+        <input type="hidden" name='artid' value='{$row['artid']}' />
+        <input type='submit' name='submit' value='登陆' />
+      </form>
+      <{/if}>
+    <div style="clear:both; height:10px;"></div>
+    
+    <div class="ds-replybox">
+        <{if isset($smarty.session.user.id)}>
+        <img alt="" src="./Uploads/images/{$smarty.session.user.avatar}">
+        <{else}>
+        <img alt="" src="https://avatar.duoshuo.com/avatar-50/587/39630.jpg">
+        <{/if}>
+        <form action="index.php?c=article&a=addcomment" method="post">
+        <input type='hidden' name='id' value='<{$data.a_id}>' />
+        <textarea placeholder="说点什么吧…" title="Ctrl+Enter快捷提交" name="content"></textarea><pre class="ds-hidden-text"></pre>
+        </div>
+        <div class="ds-post-toolbar">
+        <div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span>
+        </div>
+        <button type="submit" class="ds-post-button">发布</button>
+        <div class="ds-toolbar-buttons"><a title="插入表情" class="ds-toolbar-button ds-add-emote"></a>
+        </div>
+        </div>
+        </form>
+      </div>
+  </article>
+  
+
+  <aside>
+    <div class="rnav">
+      <li class="rnav1 "><a href="/">日记</a></li>
+      <li class="rnav2 "><a href="/">欣赏</a></li>
+      <li class="rnav3 "><a href="/">程序人生</a></li>
+      <li class="rnav4 "><a href="/">经典语录</a></li>
+    </div>
+    <div class="ph_news">
+      <h2>
+        <p>点击排行</p>
+      </h2>
+      <ul class="ph_n">
+        <li><span class="num1">1</span><a href="/">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+        <li><span class="num2">2</span><a href="/">励志人生-要做一个潇洒的女人</a></li>
+        <li><span class="num3">3</span><a href="/">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+        <li><span>4</span><a href="/">Green绿色小清新的夏天-个人博客模板</a></li>
+        <li><span>5</span><a href="/">女生清新个人博客网站模板</a></li>
+        <li><span>6</span><a href="/">Wedding-婚礼主题、情人节网站模板</a></li>
+        <li><span>7</span><a href="/">Column 三栏布局 个人网站模板</a></li>
+        <li><span>8</span><a href="/">时间煮雨-个人网站模板</a></li>
+        <li><span>9</span><a href="/">花气袭人是酒香—个人网站模板</a></li>
+      </ul>
+      <h2>
+        <p>栏目推荐</p>
+      </h2>
+      <ul>
+        <li><a href="/">有一种思念，是淡淡的幸福,一个心情一行文字</a></li>
+        <li><a href="/">励志人生-要做一个潇洒的女人</a></li>
+        <li><a href="/">女孩都有浪漫的小情怀——浪漫的求婚词</a></li>
+        <li><a href="/">Green绿色小清新的夏天-个人博客模板</a></li>
+        <li><a href="/">女生清新个人博客网站模板</a></li>
+        <li><a href="/">Wedding-婚礼主题、情人节网站模板</a></li>
+        <li><a href="/">Column 三栏布局 个人网站模板</a></li>
+        <li><a href="/">时间煮雨-个人网站模板</a></li>
+        <li><a href="/">花气袭人是酒香—个人网站模板</a></li>
+      </ul>
+      <h2>
+        <p>最新评论</p>
+      </h2>
+      <ul class="pl_n">
+        <dl>
+          <dt><img src="./public/home/images/s8.jpg"> </dt>
+          <dt> </dt>
+          <dd>DanceSmile
+            <time>49分钟前</time>
+          </dd>
+          <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
+        </dl>
+        <dl>
+          <dt><img src="./public/home/images/s7.jpg"> </dt>
+          <dt> </dt>
+          <dd>yisa
+            <time>2小时前</time>
+          </dd>
+          <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
+        </dl>
+        <dl>
+          <dt><img src="./public/home/images/s6.jpg"> </dt>
+          <dt> </dt>
+          <dd>小林博客
+            <time>8月7日</time>
+          </dd>
+          <dd><a href="/">博客色彩丰富，很是好看</a></dd>
+        </dl>
+        <dl>
+          <dt><img src="./public/home/images/003.jpg"> </dt>
+          <dt> </dt>
+          <dd>DanceSmile
+            <time>49分钟前</time>
+          </dd>
+          <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
+        </dl>
+        <dl>
+          <dt><img src="./public/home/images/002.jpg"> </dt>
+          <dt> </dt>
+          <dd>yisa
+            <time>2小时前</time>
+          </dd>
+          <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
+        </dl>
+      </ul>
+      <h2>
+        <p>最近访客</p>
+        <ul>
+          <img src="./public/home/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
+        </ul>
+      </h2>
+    </div>
+    <div class="copyright">
+      <ul>
+        <p> Design by <a href="/">DanceSmile</a></p>
+        <p>蜀ICP备11002373号-1</p>
+        </p>
+      </ul>
+    </div>
+  </aside>
+  <script src="./public/home/js/silder.js"></script>
+  <div class="clear"></div>
+  <!-- 清除浮动 --> 
+</div>
+</body>
+</html>
