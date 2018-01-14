@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="gb2312">
+<meta charset="utf-8">
 <title>黑色Html5响应式个人博客模板——主题《如影随形》</title>
 <meta name="keywords" content="个人博客模板,博客模板,响应式" />
 <meta name="description" content="如影随形主题的个人博客模板，神秘、俏皮。" />
-<link href="./public/home/css/base.css" rel="stylesheet">
-<link href="./public/home/css/style.css" rel="stylesheet">
-<link href="./public/home/css/media.css" rel="stylesheet">
+<link href="/public/home/css/base.css" rel="stylesheet">
+<link href="/public/home/css/style.css" rel="stylesheet">
+<link href="/public/home/css/media.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
@@ -71,14 +71,12 @@
 </head>
 <body>
 <div class="ibody">
-
-  <{include file="../common/menu.html" active=3}>
-
+ <{include file ="../common/menu.html" active='3'}>
   <article>
     <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="1/">模板分享</a>><a href="1/">个人博客模板</a></h2>
     <div class="index_about">
       <h2 class="c_titile"><{$data.a_title}></h2>
-      <p class="box_c"><span class="d_time">发布时间：<{$data.a_time|date_format:'Y-m-d H:i:s'}></span><span>编辑：杨青</span><span>浏览（<{$data.a_click}>）</span><span>评论数（14）</span></p>
+      <p class="box_c"><span class="d_time">发布时间：<{$data.a_time|date_format:'Y-m-d H:i:s'}></span><span>编辑：<{$data.a_name}></span><span>浏览（<{$data.a_click}>）</span><span>评论览（<{$data.a_comment}>）</span></p>
       <ul class="infos">
        <{$data.a_content}>
       </ul>
@@ -87,83 +85,138 @@
       </div>
       <div class="nextinfo">
         <{if $pre==false}>
-        <p>上一篇：<a href="#">没有了</a></p>
+        <p>上一篇：没有了</p>
         <{else}>
-        <p>上一篇：<a href="index.php?c=article&a=view&a_id=<{$pre.a_id}>"><{$pre.a_title}></a></p>
+        <p>上一篇：<a href="index.php?c=article&a=view&id=<{$pre.a_id}>"><{$pre.a_title}></a></p>
         <{/if}>
         <{if $next==false}>
-        <p>下一篇：<a href="#">没有了</a></p>
+        <p>下一篇：没有了</p>
         <{else}>
-        <p>下一篇：<a href="index.php?c=article&a=view&a_id=<{$next.a_id}>"><{$next.a_title}></a></p>
+        <p>下一篇：<a href="index.php?c=article&a=view&id=<{$next.a_id}>"><{$next.a_title}></a></p>
         <{/if}>
       </div>
+      <!-- 相关文章的内容 -->
       <div class="otherlink">
-        <h2>相关文章</h2>
-        <ul>
-          <li><a href="/news/s/2013-07-25/524.html" title="现在，我相信爱情！">现在，我相信爱情！</a></li>
-          <li><a href="/newstalk/mood/2013-07-24/518.html" title="我希望我的爱情是这样的">我希望我的爱情是这样的</a></li>
-          <li><a href="/newstalk/mood/2013-07-02/335.html" title="有种情谊，不是爱情，也算不得友情">有种情谊，不是爱情，也算不得友情</a></li>
-          <li><a href="/newstalk/mood/2013-07-01/329.html" title="世上最美好的爱情">世上最美好的爱情</a></li>
-          <li><a href="/news/read/2013-06-11/213.html" title="爱情没有永远，地老天荒也走不完">爱情没有永远，地老天荒也走不完</a></li>
-          <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-        </ul>
+            <h2>相关文章</h2>
+            <ul>
+            <{foreach $assoc as $v}>
+            <li><a href="index.php?c=article&a=view&id=<{$v.a_id}>" title="<{$v.a_title}>"><{$v.a_title}></a></li>
+            <{/foreach}>
+            </ul>
       </div>
 
     <div style="clear:both; height:10px;"></div>
       <div class="otherlink">
           <h2>评论列表</h2>
-          <dl>
-            <dt><img src="" alt=""></dt>
-            <dd>
-              <h3>评论者</h3>
-              <p>评论内容</p>
-              <p>评论时间：</p>
-            </dd>
-          </dl>
-          <dl>
-            <dt><img src="" alt=""></dt>
-            <dd>
-              <h3>评论者</h3>
-              <p>评论内容</p>
-              <p>评论时间：</p>
-            </dd>
-          </dl>
+          <!-- 定义三个常量 -->
+          <{assign var=header value=''}>
+          <{assign var=footer value=''}>
+          <{assign var=div value=''}>
+
+
+          <!-- 进行遍历回复内容 -->
+        <{foreach $reply as $value}>
+            <!-- 如果r_pid等于0,代表他是评论，直接渲染 -->
+            <{if $value.r_pid eq 0}>
+                <!-- cat连接多个变量 -->
+                <{capture assign='div'}>
+                <{$div|cat:$header:$footer}>
+                <{/capture}>
+
+
+                <!-- 清空header和footer -->
+                <{assign var=header value=''}>
+                <{assign var=footer value=''}>
+            <{/if}>
+            <!-- 如果r_pid不等于0,代表他是回复，进行拼接 -->
+            <{capture assign='h'}>
+            <div style="border-radius:5px;margin:5px;border:1px solid #009999;">
+            <{/capture}>
+
+            <{capture assign='f'}>
+                <img src="" alt="">
+                <div style="position:relative;">
+                <h3>评论者：<{$value.u_id}></h3>
+                <p>评论内容：<{$value.r_content}></p>
+                <p>评论时间：<{$value.r_time|date_format:'Y-m-d H:i:s'}></p>
+                <a href="javascript:void()" style="position:relative;left:500px;" onclick="this.nextSibling.style.display='block'">回复</a><div style="border-radius:5px;border:1px solid #009999;margin:5px;display:none;">
+                    <!-- 回复的表单内容   设置回复的方法和提交的变量-->
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="g" value="home">
+                        <input type="hidden" name="c" value="Article">
+                        <input type="hidden" name="a" value="addComment">
+                        <input type='hidden' name='userid' value='' />
+                        <input type="hidden" name="id" value="<{$data.a_id}>">
+                        <input type="hidden" name="pid" value="<{$value.r_id}>">
+                        <label>回复内容:</label><br/>
+                        <textarea name="content">
+                        </textarea>
+                        <br/>
+                        <input type="submit" value="回复">
+                    </form>
+                </div>
+                <div style="clear:both; height:10px;"></div>
+                </div>
+            </div>
+            <{/capture}>
+            <!-- 头部赋给头部 -->
+            <{capture assign='header'}>
+            <{$header|cat:$h}>
+            <{/capture}>
+
+            <!-- 尾部赋给尾部 -->
+            <{capture assign='footer'}>
+            <{$footer|cat:$f}>
+            <{/capture}>
+
+        <{/foreach}>
+
+        <{$div}>
+        <{$header}>
+        <{$footer}>
+
       </div>
+
+    <!-- 发表评论的地方 -->
     <div style="clear:both; height:10px;"></div>
-     <div class="otherlink">
+      <div class="otherlink">
         <h2>发布评论</h2>
       </div>
       <div style="clear:both; height:10px;"></div>
-      <{if isset($smarty.session.user.id)}>
-         欢迎您<{$smarty.session.user.username}>回来
-         <a href="index.php?c=User&a=logout">退出</a>
+      <{if isset($smarty.session.userInfo.id) }>
+         欢迎您<{$smarty.session.userInfo.a_name}>回来
+         <a href="index.php?c=article&a=logout&id=<{$data.a_id}>">退出</a>
       <{else}>
+      <!-- 登录界面的显示 -->
       <form class="logform" action="index.php?c=article&a=check" method="post">
         用户名：<input type="text" name="username" />&nbsp;&nbsp;密码：<input type="password" name="password" />&nbsp;&nbsp;
-        <input type="hidden" name='artid' value='{$row['artid']}' />
+        <input type="hidden" name='artid' value="<{$data.a_id}>" />
         <input type='submit' name='submit' value='登陆' />
       </form>
       <{/if}>
     <div style="clear:both; height:10px;"></div>
     
     <div class="ds-replybox">
-        <{if isset($smarty.session.user.id)}>
+
+        <{if isset($smarty.session.userInfo.id)}>
         <img alt="" src="./Uploads/images/{$smarty.session.user.avatar}">
         <{else}>
         <img alt="" src="https://avatar.duoshuo.com/avatar-50/587/39630.jpg">
         <{/if}>
-        <form action="index.php?c=article&a=addcomment" method="post">
+    <form action="index.php?c=Article&a=addcomment" method="post">
+       
         <input type='hidden' name='id' value='<{$data.a_id}>' />
         <textarea placeholder="说点什么吧…" title="Ctrl+Enter快捷提交" name="content"></textarea><pre class="ds-hidden-text"></pre>
-        </div>
-        <div class="ds-post-toolbar">
-        <div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span>
+    </div>
+    <div class="ds-post-toolbar">
+        <div class="ds-post-options ds-gradient-bg">
+            <span class="ds-sync"></span>
         </div>
         <button type="submit" class="ds-post-button">发布</button>
         <div class="ds-toolbar-buttons"><a title="插入表情" class="ds-toolbar-button ds-add-emote"></a>
         </div>
-        </div>
-        </form>
+    </div>
+    </form>
       </div>
   </article>
   
@@ -209,7 +262,7 @@
       </h2>
       <ul class="pl_n">
         <dl>
-          <dt><img src="./public/home/images/s8.jpg"> </dt>
+          <dt><img src="/public/home/images/s8.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -217,7 +270,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="./public/home/images/s7.jpg"> </dt>
+          <dt><img src="/public/home/images/s7.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -225,7 +278,7 @@
           <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
         </dl>
         <dl>
-          <dt><img src="./public/home/images/s6.jpg"> </dt>
+          <dt><img src="/public/home/images/s6.jpg"> </dt>
           <dt> </dt>
           <dd>小林博客
             <time>8月7日</time>
@@ -233,7 +286,7 @@
           <dd><a href="/">博客色彩丰富，很是好看</a></dd>
         </dl>
         <dl>
-          <dt><img src="./public/home/images/003.jpg"> </dt>
+          <dt><img src="/public/home/images/003.jpg"> </dt>
           <dt> </dt>
           <dd>DanceSmile
             <time>49分钟前</time>
@@ -241,7 +294,7 @@
           <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
         </dl>
         <dl>
-          <dt><img src="./public/home/images/002.jpg"> </dt>
+          <dt><img src="/public/home/images/002.jpg"> </dt>
           <dt> </dt>
           <dd>yisa
             <time>2小时前</time>
@@ -252,7 +305,7 @@
       <h2>
         <p>最近访客</p>
         <ul>
-          <img src="./public/home/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
+          <img src="/public/home/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
         </ul>
       </h2>
     </div>
@@ -264,7 +317,7 @@
       </ul>
     </div>
   </aside>
-  <script src="./public/home/js/silder.js"></script>
+  <script src="js/silder.js"></script>
   <div class="clear"></div>
   <!-- 清除浮动 --> 
 </div>

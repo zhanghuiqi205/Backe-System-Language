@@ -5,6 +5,9 @@ namespace Controller;
 use \core\commonController;
 use \Model\categoryModel;
 use \Model\articleModel;
+use \Model\ArtArtModel;
+use \Model\TagModel;
+
 use Core\fileupload;
 use \core\myImage;
 use \Core\pagination;
@@ -14,6 +17,7 @@ class articleController extends commonController{
 
     //文章列表和分页的实现
     public function index(){
+
         $art = new articleModel();
 
         $curPage =isset($_GET['curPage'])?$_GET['curPage']:1;
@@ -22,11 +26,8 @@ class articleController extends commonController{
         $totalRows = $art->getTotalRows();
         $page =new pagination();
 
-
-
-
         $pageString=$page->getpage($totalRows,$rowsPerPage,$curPage,$url);
-
+        
         $data= $art ->getAllArt($curPage,$rowsPerPage);
         $this->assign('curPage',$curPage);
         $this->assign('art',$data);
@@ -34,25 +35,6 @@ class articleController extends commonController{
         $this ->display("index.html");
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //推荐和取消推荐
     public function recommend(){  
         $a_id =isset($_GET['id'])?$_GET['id']:0;
@@ -82,6 +64,7 @@ class articleController extends commonController{
         $data['a_like']=0;
         $data['a_comment']=0;
         $data['a_author']=$_SESSION['userInfo']['id'];
+        // var_dump($data);exit;
         //处理文件上传
         if(is_uploaded_file($_FILES['MyFile']['tmp_name'])){
             echo '有文件上传';
@@ -112,6 +95,22 @@ class articleController extends commonController{
         }
         $art = new articleModel();
         $return = $art->store($data);
+
+        $a_tag =isset($_POST['tag'])?$_POST['tag']:'';
+        if(!$a_tag){
+            $this->error('关键字不能为空','index.php?g=admin&c=article&a=add');
+        }
+
+
+        $arr = explode(',',$_POST['tag']);
+        // var_dump($arr);exit;
+        foreach ($arr as  $value) {
+            $tag =new TagModel();
+            $t_id =  $tag ->store($value);
+            $artart =new ArtArtModel();
+            $artart->store($t_id,$return);
+        }
+
         if ($return) {
            header("location:index.php?g=admin&c=article&a=index");
            exit;

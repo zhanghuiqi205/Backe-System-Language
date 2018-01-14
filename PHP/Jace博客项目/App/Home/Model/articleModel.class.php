@@ -35,17 +35,37 @@ class articleModel extends model{
         $sql ="select a_id,a_title from article where a_id<$id order by a_id desc limit 1";
         return $this->pdo->getOne($sql);
     }
+    
     public function getArtNext($id){
         $sql ="select a_id,a_title from article where a_id>$id order by a_id asc limit 1";
         return  $this->pdo->getOne($sql);
     }
 
-    
+    //验证登录的方法
+    public function check($a_name,$a_pwd){
+       $sql ="select * from admin where a_name='$a_name' and a_pwd=md5('$a_pwd')";
+    //    var_dump($sql);exit;
+       return $this->pdo->getOne($sql);
+    }
 
+    //更新登录的时间
+    public function updateInfo($id){
+        $time =date('Y-m-d h:i:s');
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $sql ="update admin set a_last_ip ='$ip',a_last_time='$time' where id =$id";
+        $this->pdo->doExec($sql);
+    }
 
-
-
-
-
+    //更新评论数
+    public function updateComment($a_id){
+     $sql="update article set a_comment = a_comment+1 where a_id=$a_id";
+     $this->pdo->doExec($sql);
+    }
+   
+    //获取相关文章的数据
+    public function getAssocArt($id){
+        $sql="select a_id,a_title from article where a_id in (select distinct a_id from art_art where t_id in (select a_id from art_art where t_id =$id)) and a_id != $id";
+        return $this->pdo->getRow($sql);
+    }
 
 }
