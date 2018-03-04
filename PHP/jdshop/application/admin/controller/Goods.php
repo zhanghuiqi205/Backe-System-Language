@@ -88,15 +88,16 @@ class Goods extends Common{
             }
             $info['goods_body']=htmlspecialchars_decode($info['goods_body']);
             $this->assign('info',$info);
+
             // 获取所有的分类
-            $tree =model('Category');
+            $tree = model('Category')->getTree();
             $this->assign('tree',$tree);
             return $this->fetch();
         }
         $model = model('Goods');
         $result = $model->editGoods();
-        if($result==false){
-            $this->error($model->getError);
+        if($result===false){
+            $this->error($model->getError());
         }
         $this->success('ok');
     }

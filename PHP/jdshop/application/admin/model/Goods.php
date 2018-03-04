@@ -47,6 +47,7 @@ class Goods extends Model{
                 return false;
             }
         }else{
+            // 存在对比重复
             if(Goods::get(['goods_sn'=>$data['goods_sn']])){
                 return false;
             }   
@@ -168,8 +169,6 @@ class Goods extends Model{
             return false;
         }
         return Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData);
-
-
     }
 
 }

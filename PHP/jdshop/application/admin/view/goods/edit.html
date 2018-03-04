@@ -37,7 +37,8 @@
                         <select name="cate_id">
                             <option value="0">请选择...</option>
                             {volist name="tree" id='vo'}
-                              <option value="{$vo.id}">
+                            {$vo.id}
+                              <option value="{$vo.id}"{eq name="info.cate_id" value="$vo.id" }selected="selected"{/eq}>
                                 {$vo.lev|str_repeat="&nbsp;&nbsp;&nbsp;",###}{$vo.cname}
                               </option>
                             {/volist}
@@ -49,30 +50,30 @@
                 <tr>
                     <td class="label">本店售价：</td>
                     <td>
-                        <input type="text" name="shop_price" value="" size="20"/>
+                        <input type="text" name="shop_price" value="{$info.shop_price}" size="20"/>
                         <span class="require-field">*</span>
                     </td>
                 </tr>
                 <tr>
                     <td class="label">是否上架：</td>
                     <td>
-                        <input type="radio" name="is_sale" value="1" checked="checked" /> 是
-                        <input type="radio" name="is_sale" value="0"/> 否
+                        <input type="radio" name="is_sale" value="1" {eq name="info.is_sale" value="1" }checked="checked"{/eq} /> 是
+                        <input type="radio" name="is_sale" value="0" {eq name="info.is_sale" value="0" }checked="checked"{/eq} /> 否
                     </td>
                 </tr>
                 <tr>
                     <td class="label">加入推荐：</td>
                     <td>
-                        <input type="checkbox" name="is_hot" value="1" /> 热卖 
-                        <input type="checkbox" name="is_new" value="1" /> 新品 
-                        <input type="checkbox" name="is_rec" value="1" /> 推荐
+                        <input type="checkbox" name="is_hot" value="1" {eq name="info.is_hot" value="1" }checked="checked"{/eq} /> 热卖 
+                        <input type="checkbox" name="is_new" value="1" {eq name="info.is_new" value="1" }checked="checked"{/eq} /> 新品 
+                        <input type="checkbox" name="is_rec" value="1" {eq name="info.is_rec" value="1" }checked="checked"{/eq} /> 推荐
                     </td>
                 </tr>
 
                 <tr>
                     <td class="label">市场售价：</td>
                     <td>
-                        <input type="text" name="market_price" value="" size="20" />
+                        <input type="text" name="market_price" value="{$info.market_price}" size="20" />
                     </td>
                 </tr>
 
@@ -96,7 +97,7 @@
                     <td>
                         <script src="/ueditor/ueditor.config.js"></script>
                         <script src="/ueditor/ueditor.all.js"></script>
-                        <script id="container" name="goods_body" type="text/plain" style="min-height:400px"></script>
+                        <script id="container" name="goods_body" type="text/plain" style="min-height:400px">{$info.goods_body}</script>
                     </td>
                 </tr>
             </table>
