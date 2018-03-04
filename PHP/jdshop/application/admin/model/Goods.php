@@ -32,12 +32,24 @@ class Goods extends Model{
     }
 
     //引用传值，这样函数内部可以修改函数外部的数据
-    public function checkGoodsSn(&$data)
+    public function checkGoodsSn(&$data,$isUpdate=false)
     {
-        if(Goods::get(['goods_sn'=>$data['goods_sn']])){
-            return false;
+        if(!$data['goods_sn']){
+            $data['goods_sn'] = 'JX'.uniqid();
+            return true;
+        }
+        if($isUpdate){
+            $where=[
+                'goods_sn'=>$data['goods_sn'],
+                'id'=>['neq',$data['id']]
+            ];
+            if(Goods::get($where)){
+                return false;
+            }
         }else{
-            $data['goods_sn'] = 'JX'.uniqid();//uniqid生成唯一的id
+            if(Goods::get(['goods_sn'=>$data['goods_sn']])){
+                return false;
+            }   
         }
     }
 
@@ -152,6 +164,11 @@ class Goods extends Model{
             return false;
         }
         // 实现图片上传
+        if($this->uploadImg($postData,false)===false){
+            return false;
+        }
+        return Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData);
+
 
     }
 

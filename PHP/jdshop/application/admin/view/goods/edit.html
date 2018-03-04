@@ -37,7 +37,7 @@
                         <select name="cate_id">
                             <option value="0">请选择...</option>
                             {volist name="tree" id='vo'}
-                              <option value="{$vo.id}" {eq}{/eq}>
+                              <option value="{$vo.id}">
                                 {$vo.lev|str_repeat="&nbsp;&nbsp;&nbsp;",###}{$vo.cname}
                               </option>
                             {/volist}
