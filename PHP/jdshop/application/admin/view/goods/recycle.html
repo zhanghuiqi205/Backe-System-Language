@@ -1,0 +1,135 @@
+{extend name="public:base" /}
+{block name="title"}ECSHOP 管理中心-商品列表{/block}
+{block name="main"}-商品列表{/block}
+{block name="body"}
+<style>
+    ul,li{
+        list-style: none;
+        text-align: center;
+        padding:0px;
+    }
+    ul li a{
+        color: #08c !important;
+        text-decoration: none !important;
+    }
+    li{
+        display: inline-block;
+        width:30px;
+        line-height: 30px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+    li.active{
+        background-color: #f5f5f5;
+        color: #005580;
+    }
+    li:hover{
+        background-color: #f5f5f5;
+        color: #005580;
+        cursor: pointer;
+    }
+</style>
+<div class="form-div">
+    <form action="" name="searchForm">
+        <img src="__ADMIN__/Images/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <!-- 分类 -->
+        <select name="cat_id">
+            <option value="0">所有分类</option>
+            {volist name="tree" id="item"}
+            <option value="{$item.id}">
+              {$item.lev|str_repeat="&nbsp;&nbsp;",###}{$item.cname}
+            </option>
+            {/volist}
+        </select>
+
+        <!-- 推荐 -->
+        <select name="intro_type">
+            <option value="0">全部</option>
+            <option value="is_rec">推荐</option>
+            <option value="is_new">新品</option>
+            <option value="is_hot">热销</option>
+        </select>
+        <!-- 上架 -->
+        <select name="is_sale">
+            <option value='0'>全部</option>
+            <option value="1">上架</option>
+            <option value="2">下架</option>
+        </select>
+        <!-- 关键字 -->
+        关键字 <input type="text" name="keyword" size="15" />
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+
+<!-- 商品列表 -->
+
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>编号</th>
+                <th>商品名称</th>
+                <th>货号</th>
+                <th>价格</th>
+                <th>上架</th>
+                <th>推荐</th>
+                <th>新品</th>
+                <th>热销</th>
+                <th>操作</th>
+            </tr>
+            {volist name="data" id="item"}
+            <tr>
+                <td align="center">{$item.id}</td>
+                <td align="center" class="first-cell"><span>{$item.goods_name}</span></td>
+                <td align="center"><span onclick="">{$item.goods_sn}</span></td>
+                <td align="center"><span>{$item.shop_price}</span></td>
+                <td align="center"><img onclick="is_toggle(this,'{$item.id}','is_sale')" src="__ADMIN__/Images/{eq name='item.is_sale' value='1'}yes.gif{else/}no.gif{/eq} "/></td>
+                <td align="center"><img onclick="is_toggle(this,'{$item.id}','is_rec')" src="__ADMIN__/Images/{eq name='item.is_rec' value='1'}yes.gif{else/}no.gif{/eq} "/></td>
+                <td align="center"><img onclick="is_toggle(this,'{$item.id}','is_new')" src="__ADMIN__/Images/{eq name='item.is_new' value='1'}yes.gif{else/}no.gif{/eq} "/></td>
+                <td align="center"><img onclick="is_toggle(this,'{$item.id}','is_hot')" src="__ADMIN__/Images/{eq name='item.is_hot' value='1'}yes.gif{else/}no.gif{/eq} "/></td>
+                <td align="center">
+                <a href="{:url('restore','id='.$item['id'])}" title="还原">还原</a>
+                <a href="{:url('remove','id='.$item['id'])}" onclick="" title="回收站">彻底删除</a></td>
+            </tr>
+            {/volist}
+        </table>
+
+        <!-- 分页开始 -->
+        <table id="page-table" cellspacing="0">
+            <tr>
+                <!-- <td width="80%">&nbsp;</td> -->
+                <td align="center" nowrap="true">
+                    {$data->render()}
+                </td>
+            </tr>
+        </table>
+    <!-- 分页结束 -->
+    </div>
+
+{/block}
+<div id="footer">
+共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>
+{block name="js"}
+   <script>
+      function is_toggle(obj,goods_id,field) {
+          $.ajax({
+             url:"{:url('setStatus')}",
+             type:'post',
+             data:{goods_id:goods_id,field:field},
+             success:function(data){
+                if(data.statusCode==0){
+                    console.log(data.msg);
+                    return;
+                }
+                if(data.status==0){
+                    $(obj).attr('src','__ADMIN__/Images/no.gif');
+                }else{
+                    $(obj).attr('src','__ADMIN__/Images/yes.gif');
+                }
+             }
+          });
+      }
+   </script>
+{/block}
