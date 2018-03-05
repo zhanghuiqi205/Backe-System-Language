@@ -42,7 +42,7 @@ class Goods extends Model{
             $where=[
                 'goods_sn'=>$data['goods_sn'],
                 'id'=>['neq',$data['id']]
-            ];
+            ];            
             if(Goods::get($where)){
                 return false;
             }
@@ -84,8 +84,6 @@ class Goods extends Model{
         
         $image->thumb(200,200)->save($data['goods_thumb']);
 
-
-
         // 实现转移
         $result = upload_to_cdn($data['goods_img']);
         $result2 = upload_to_cdn($data['goods_thumb']);
@@ -115,7 +113,7 @@ class Goods extends Model{
        // 处理推荐状态
         $intro_type = input('intro_type');
         if($intro_type){
-            $where['a'.$intro_type]=1;
+            $where['a.'.$intro_type]=1;
         }
        
         // 处理上下架状态
@@ -134,12 +132,13 @@ class Goods extends Model{
         }
 
 
-        $data =Goods::alias('a')->where($where)->join('jd_category b','a.cate_id=b.id','left')->field('a.*,b.cname')->paginate(1,false,['query'=>request()->param()]);
+        $data = Goods::alias('a')->where($where)->join('jd_category b','a.cate_id=b.id','left')->field('a.*,b.cname')->paginate(1,false,['query'=>request()->param()]);
         return $data;
     }
     // 修改状态的函数
     public function setStatus($goods_id,$field)
     {
+
         $allow =['is_sale','is_hot','is_new','is_rec'];
         if(!in_array($field,$allow)){
            $this->error ="field error";
@@ -151,8 +150,8 @@ class Goods extends Model{
         Goods::where(['id'=>$goods_id])->setField($field,$status);
         return $status;
     }
-    public function editGoods()
-    {
+    // 编辑商品
+    public function editGoods(){       
         $postData = input();
         if($this->checkGoodsSn($postData,true)===false){
            $this->error ="货号错误";
@@ -160,7 +159,7 @@ class Goods extends Model{
         }
         //  验证数据
         $obj = validate('Goods');
-        if($obj->check($postData)){
+        if(!$obj->check($postData)){
             $this->error = $obj ->getError();
             return false;
         }
@@ -168,7 +167,7 @@ class Goods extends Model{
         if($this->uploadImg($postData,false)===false){
             return false;
         }
-        return Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData);
+        return Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData);      
     }
 
 }

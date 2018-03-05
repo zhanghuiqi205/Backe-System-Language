@@ -28,6 +28,7 @@ class Goods extends Common{
        $model = model('Goods');
       //调用自定义的方法获取数据 (含有对数据的筛选)   
        $data = $model->listData();
+    //    dump($data);
        $this->assign('data',$data);
        return $this->fetch();
     }
@@ -76,6 +77,7 @@ class Goods extends Common{
         Db::name('goods')->where(['id'=>$id])->delete();
         $this->success('ok');
     }
+    // 编辑商品
     public function edit()
     {
         $id = input('id/d');
