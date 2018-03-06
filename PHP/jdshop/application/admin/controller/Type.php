@@ -7,8 +7,11 @@ class Type extends Common{
     public function add()
     {
        if($this->request->isGet()){
-           $this->fetch();
+          return $this->fetch();
        }
+       $data = input();
+       Db::name('type')->insert($data);
+     $this->success('ok');
     }
     //类型的列表显示
     public function index()
@@ -22,8 +25,21 @@ class Type extends Common{
     {
        $id = input('id/d');
        $info =Db::name('type')->where(['id'=>$id])->delete();
-       
-
+       $this->success('ok','index');  
+    }
+    public function edit()
+    {
+        $id = input('id');
+        if($this->request->isGet()){
+           $info = Db::name('type')->where(['id'=>$id])->find();
+           if(!$info){
+               $this->error("参数错误");
+           }
+           $this->assign('info',$info);
+           return $this->fetch();
+        }
+        Db::name('type')->where(['id'=>$id])->update(['type'=>input('type')]);
+        $this->success('ok');
     }
 
 }
