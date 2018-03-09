@@ -4,8 +4,7 @@ use think\Db;
 
 class Type extends Common{
     //增加分类
-    public function add()
-    {
+    public function add(){
        if($this->request->isGet()){
           return $this->fetch();
        }
@@ -14,15 +13,13 @@ class Type extends Common{
      $this->success('ok');
     }
     //类型的列表显示
-    public function index()
-    {
+    public function index(){
        $data =Db::name('type')->paginate(1);
        $this->assign('data',$data);
        return $this->fetch();
     } 
     // 类型删除
-    public function del()
-    {
+    public function del(){
        $id = input('id/d');
        $info =Db::name('type')->where(['id'=>$id])->delete();
        $this->success('ok','index');  

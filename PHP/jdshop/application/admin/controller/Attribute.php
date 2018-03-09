@@ -10,5 +10,11 @@ class Attribute extends Common{
            $this->assign('type',$type);
            return $this->fetch();
         }
+        $model = model('Attribute');
+        $result = $model->addAttribute();
+        if($result===false){
+            $this->error($model->getError());
+        }
+        $this->success('ok');
     }
 }

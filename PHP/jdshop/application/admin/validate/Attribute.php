@@ -10,6 +10,7 @@ class Goods extends Validate{
     protected $rule =[
       'attr_name'=>'require',
       'type_id'=>'require|gt:0',
-       
+      'attr_type'=>'require|in:1,2',
+      'attr_input_type'=>'require|in:1,2'
     ];
 }
