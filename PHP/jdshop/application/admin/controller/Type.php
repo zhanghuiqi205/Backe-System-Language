@@ -10,7 +10,8 @@ class Type extends Common{
        }
        $data = input();
        Db::name('type')->insert($data);
-     $this->success('ok');
+       del_type_cache();
+       $this->success('ok');
     }
     //类型的列表显示
     public function index(){
@@ -21,7 +22,8 @@ class Type extends Common{
     // 类型删除
     public function del(){
        $id = input('id/d');
-       $info =Db::name('type')->where(['id'=>$id])->delete();
+       Db::name('type')->where(['id'=>$id])->delete();
+       del_type_cache();
        $this->success('ok','index');  
     }
     public function edit()
@@ -36,6 +38,7 @@ class Type extends Common{
            return $this->fetch();
         }
         Db::name('type')->where(['id'=>$id])->update(['type'=>input('type')]);
+        del_type_cache();
         $this->success('ok');
     }
 

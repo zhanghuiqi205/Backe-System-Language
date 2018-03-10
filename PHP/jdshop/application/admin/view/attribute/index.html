@@ -48,8 +48,8 @@
                 <td align="center">{$item.id}</td>
                 <td align="center">{$item.attr_name}</td>
                 <td align="center">{$item.type_name}</td>
-                <td align="center">{$item.attr_type}</td>
-                <td align="center">{$item.attr_input_type}</td>
+                <td align="center">{eq name="item.attr_type" value="1"}唯一{else/}单选{/eq}</td>
+                <td align="center">{eq name="item.attr_input_type" value="1"}手工输入{else/}列表选择{/eq}</td>
                 <td align="center">{$item.attr_values}</td>
                 <td align="center">
                     <a href="{:url('edit','id='.$item['id'])}" title="编辑"><img src="__ADMIN__/Images/icon_edit.gif" width="16" height="16" border="0" /></a>

@@ -7,11 +7,12 @@
         <p>
             <span class="tab-front" id="general-tab">通用信息</span>
             <span class="tab-front" id="general-tab">详细信息</span>
+            <span class="tab-front" id="general-tab">商品属性</span>
         </p>
     </div>
     <div id="tabbody-div">
         <form enctype="multipart/form-data" action="" method="post">
-            <table width="90%" id="general-table" align="center">
+            <table width="90%" class="table1" align="center">
                 <tr>
                     <td class="label">商品名称：</td>
                     <td><input type="text" name="goods_name" value=""size="30" />
@@ -89,7 +90,7 @@
                     </td>
                 </tr> -->
             </table>
-            <table width="90%" id="general-table" align="center" style="display:none">
+            <table width="90%" class="table1" align="center" style="display:none">
                 <tr>
                     <td class="label">商品描述</td>
                     <td>
@@ -99,6 +100,22 @@
                     </td>
                 </tr>
             </table>
+            <table width="90%" class="table1" align="center" style="display:none">
+                <tr>
+                    <td class="label">商品类型：</td>
+                    <td>
+                        <select name="type_id" id="type_id">
+                            <option value="">选择类型</option>
+                            {volist name="type" id="item"}
+                             <option value="{$item.id}">{$item.type_name}</option>
+                            {/volist}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="showAttr"></td>
+                </tr>
+           </table>
             <div class="button-div">
                 <input type="submit" value=" 确定 " class="button"/>
                 <input type="reset" value=" 重置 " class="button" />
@@ -119,10 +136,36 @@
 <script>
     $('#tabbar-div p span').click(function() {
         console.log(111111);
-        $('table').hide();
+        $('.table1').hide();
         var index = $(this).index();
         console.log(index);
-        $("table").eq(index).show();
+        $(".table1").eq(index).show();
     });
+    $('#type_id').change(function() {
+        console.log(2222222);
+        var value =$(this).val();
+        $.ajax({
+           url:'{:url("showAttr")}',
+           type:'post',
+           data:{type_id:value},
+           success:function(msg){
+               $('#showAttr').html(msg);
+            }
+        });
+    })
+    function clonethis(obj) {
+        console.log(2333333);
+        var object =$(obj).parent().parent();
+
+        var newTr =object.clone();
+        // debugger;
+        if($(obj).html()=="[+]"){
+            newTr.find('a').html('[-]');
+            object.after(newTr);
+        }else{
+            object.remove();
+        }
+
+    }
 </script>
 {/block}

@@ -16,14 +16,45 @@ class Attribute extends Common{
             $this->error($model->getError());
         }
         $this->success('ok');
+
     }
 
     // 实现属性列表显示
-    public function index()
-    {
+    public function index(){
         $model = model('Attribute');
         $data = $model->listData();
+        dump($data);
         $this->assign('data',$data);
         return $this->fetch();
     }
+    public function del()
+    {
+       $id =input('id');
+       $model =model('Attribute');
+       $model->where(['id'=>$id])->delete();
+       $this->success('ok','index');
+    }
+    public function edit()
+    {
+        $id = input('id');
+        $model = model('Attribute');
+        if($this->request->isGet()){
+            $info = $model->where(['id'=>$id])->find();
+            if(!$info){
+                $this->error('fail');
+            }
+            $this->assign('info',$info);
+            // 获取所有类型
+            $type =Db::name('type')->select();
+            $this->assign('type',$type);
+            return $this->fetch();
+        }
+        $result = $model->editAttribute();
+        if($result ===false){
+            $this->error($model->getError());
+        }
+        $this->success('ok');
+
+    }
+
 }

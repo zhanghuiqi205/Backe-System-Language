@@ -1,0 +1,22 @@
+<table width="90%" align="center">
+     {volist name="data" id="vo"}
+        <tr>
+            <td class="label">
+                {eq name="vo.attr_type" value="2"}
+                <a href="javascript:;" onclick="clonethis(this)">[+]</a>
+                {/eq}{$vo.attr_name}:
+            </td>
+            <td>
+                {eq name="vo.attr_input_type" value="1"}
+                <input type="text" name="attr[{$vo.id}][]">
+                 {else /}
+                 <select name="attr[{$vo.id}][]" id="">
+                     {volist name="vo.attr_values" id="v"}
+                        <option value="">{$v}</option>
+                     {/volist}
+                 </select>
+                {/eq}
+            </td>
+        </tr>
+     {/volist}
+</table>

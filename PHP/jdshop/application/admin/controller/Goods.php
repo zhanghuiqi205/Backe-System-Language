@@ -7,10 +7,34 @@ class Goods extends Common{
     public function add()
     {
         if($this->request->isGet()){
+
+            //获取到所有的类型信息
+            $type = get_type_info();
+            $this->assign('type',$type);
+
+            // 获取所有的分类
             $tree = model('Category')->getTree();
             $this->assign('tree',$tree);
             return $this->fetch();
         }
+        //获取添加商品的id标识
+        $goods_id = Goods::getLastInsID();
+        $attr = input('attr/a');
+        foreach ($attr as $key => $value) {
+            // 去掉重复
+            $value =array_unique($value);
+            foreach ($value as  $v) {
+                $list[]=[
+                   "goods_id"=>$goods_id,
+                   "attr_id"=>$key,
+                   "attr_value"=>$v
+                ];
+            }
+        }
+        if($list){
+            Db::name('goods_attr')->insertALL($list);
+        }
+
         $model = model('Goods');
         $retult = $model->addGoods();
         if($retult===false){
@@ -103,7 +127,28 @@ class Goods extends Common{
         }
         $this->success('ok');
     }
+    public function showAttr()
+    {
+        $type_id =input('type_id/d');
+        if($type_id<=0){
+            return '参数错误';
+        }
+        $list = Db::name('attribute')->where(['type_id'=>$type_id])->select();
 
+       if(!$list){
+           return "没有数据";
+       }
+       $data=[];
+        foreach ($list as  $value) {
+            if($value['attr_input_type']==2){
+                $value['attr_values']=explode(',',$value['attr_values']);  
+            }
+            $data[]=$value;
+        }
+        
+        $this->assign('data',$data);
+        return $this->fetch();
+    }
 
 
     

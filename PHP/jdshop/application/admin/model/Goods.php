@@ -2,6 +2,7 @@
 namespace app\admin\model;
 use think\Model;
 use think\Image; 
+use think\Db;
 
 // 商品模型
 
@@ -25,10 +26,36 @@ class Goods extends Model{
             return false;
         }
         $postData['addtime']=time();
-
        //allowField设置容许写入的字段
        //每个字段使用逗号隔开，设置为true表示根据数据表字段进行过滤 
-        return Goods::isUpdate(false)->allowField(true)->save($postData);
+       Db::startTrans();
+       try{
+         Goods::isUpdate(false)->allowField(true)->save($postData);
+        //获取添加的商品ID标识
+         $goods_id = Goods::getLastInsID();
+        //  属性值入库
+        $attr = input('attr/a');
+        $list =[];
+        foreach ($attr as $key => $value) {
+           $value = array_unique($value);
+           foreach ($value as $v) {
+               $list[]=[
+                 'goods_id'=>$goods_id,
+                 'attr_id'=>$key,
+                 "attr_value"=>$v
+               ];  
+           }
+        }
+        if($list){
+            Db::name('goods_attr')->insertAll($list);
+        }
+        Db::commit();
+
+       }catch(\Exception $e){
+          Db::rollback();
+          $this->error ="数据写入错误";
+          return false;
+       } 
     }
 
     //引用传值，这样函数内部可以修改函数外部的数据

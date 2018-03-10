@@ -1,0 +1,51 @@
+{extend name="public:base" /}
+{block name="body"}
+<div class="main-div">
+    <form action="" method="post" name="theForm" enctype="multipart/form-data">
+        <table width="100%" id="general-table">
+            <tr>
+                <td class="label">属性名称:</td>
+                <td>
+                    <input type='text' name='attr_name' value="{$info.attr_name}" /> <font color="red">*</font>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">所属类型:</td>
+                <td>
+                    <select name="type_id">
+                        <option value="0">选择类型</option>
+                        {volist name="type" id="vo"}
+                            <option value="{$vo.id}" {eq name="info.type_id" value="$vo.id"}selected="selected"{/eq}>{$vo.type_name}</option>
+                        {/volist}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性类型:</td>
+                <td>
+                    <input type='radio' name='attr_type' value="1" {eq name="info.attr_type" value="1"}checked="checked"{/eq} />唯一属性
+                    <input type='radio' name='attr_type' value="2" {eq name="info.attr_type" value="2"}checked="checked"{/eq}/>单选属性
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性录入方式:</td>
+                <td>
+                    <input type='radio' name='attr_input_type' value="1" {eq name="info.attr_input_type" value="1"}checked="checked"{/eq}/>手工输入
+                    <input type='radio' name='attr_input_type' value="2" {eq name="info.attr_input_type" value="2"}checked="checked"{/eq}/>列表选择
+                </td>
+            </tr>
+            <tr>
+                <td class="label">属性默认值:</td>
+                <td>
+                    <textarea name='attr_values' style="min-height: 140px; min-width: 450px;">{$info.attr_values}</textarea>(每个值英文逗号隔开) 
+                </td>
+            </tr>
+        </table>
+        <div class="button-div">
+            <input type="submit" value=" 确定 " />
+            <input type="reset" value=" 重置 " />
+        </div>
+    </form>
+</div>
+
+{/block}

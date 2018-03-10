@@ -39,3 +39,26 @@ if(!function_exists('upload_to_cdn')){
         return $obj->up_file($filePath,$newFilePath);
     }
 }
+
+// 得到type info 信息
+if(!function_exists('get_type_info')){
+  function get_type_info(){
+      $typeInfo =cache('type');
+      if(!$typeInfo){
+          $type=db('type')->select();
+          foreach ($type as $v) {
+              $typeInfo[$v['id']]=$v;
+          }
+          cache('type',$typeInfo,3600*24);
+      }
+      return $typeInfo;
+  }
+}
+// 删除类型缓存
+if(!function_exists('del_type_cache')){
+     function del_type_cache(){
+         return cache('type',null);
+     }
+}
+
+
