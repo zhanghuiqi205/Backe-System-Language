@@ -35,20 +35,8 @@ class Goods extends Model{
          $goods_id = Goods::getLastInsID();
         //  属性值入库
         $attr = input('attr/a');
-        $list =[];
-        foreach ($attr as $key => $value) {
-           $value = array_unique($value);
-           foreach ($value as $v) {
-               $list[]=[
-                 'goods_id'=>$goods_id,
-                 'attr_id'=>$key,
-                 "attr_value"=>$v
-               ];  
-           }
-        }
-        if($list){
-            Db::name('goods_attr')->insertAll($list);
-        }
+        // 实现属性的批量写入
+        model('GoodsAttr')->insertAllAttr($goods_id,$attr);
         Db::commit();
 
        }catch(\Exception $e){
@@ -194,7 +182,12 @@ class Goods extends Model{
         if($this->uploadImg($postData,false)===false){
             return false;
         }
-        return Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData);      
+        unset($postData['attr']);
+        Goods::isUpdate(true)->allowField(true)->where(['id'=>$postData['id']])->update($postData); 
+        Db::name('goods_attr')->where(['goods_id'=>$postData['id']])->delete();
+        $attr =input('attr/a');
+        //实现属性的批量写入
+        model('GoodsAttr')->insertAllAttr($postData['id'],$attr);  
     }
 
 }

@@ -18,22 +18,22 @@ class Goods extends Common{
             return $this->fetch();
         }
         //获取添加商品的id标识
-        $goods_id = Goods::getLastInsID();
-        $attr = input('attr/a');
-        foreach ($attr as $key => $value) {
-            // 去掉重复
-            $value =array_unique($value);
-            foreach ($value as  $v) {
-                $list[]=[
-                   "goods_id"=>$goods_id,
-                   "attr_id"=>$key,
-                   "attr_value"=>$v
-                ];
-            }
-        }
-        if($list){
-            Db::name('goods_attr')->insertALL($list);
-        }
+        // $goods_id = Goods::getLastInsID();
+        // $attr = input('attr/a');
+        // foreach ($attr as $key => $value) {
+        //     // 去掉重复
+        //     $value =array_unique($value);
+        //     foreach ($value as  $v) {
+        //         $list[]=[
+        //            "goods_id"=>$goods_id,
+        //            "attr_id"=>$key,
+        //            "attr_value"=>$v
+        //         ];
+        //     }
+        // }
+        // if($list){
+        //     Db::name('goods_attr')->insertALL($list);
+        // }
 
         $model = model('Goods');
         $retult = $model->addGoods();
@@ -118,6 +118,20 @@ class Goods extends Common{
             // 获取所有的分类
             $tree = model('Category')->getTree();
             $this->assign('tree',$tree);
+            // 获取所有的类型
+            $type =Db::name('type')->select();
+            $this->assign('type',$type);
+            //获取商品属性信息
+            $attr =Db::name('goods_attr')->field('a.*,b.attr_name,b.attr_type,b.attr_input_type,b.attr_values')->where(['a.goods_id'=>$id])->alias('a')->join('jd_attribute b','a.attr_id=b.id','left')->select();
+            foreach ($attr as $key => $value) {
+                // 列表选择格式化数据
+                if($value['attr_input_type']==2){
+                    $value['attr_values']=explode(',',$value['attr_values']);
+                }
+                $list[$value['attr_id']][]=$value;
+            }
+            // dump($list);
+            $this->assign('attr',$list);
             return $this->fetch();
         }
         $model = model('Goods');

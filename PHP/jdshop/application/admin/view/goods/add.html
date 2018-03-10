@@ -134,15 +134,12 @@
     var ue =UE.getEditor("container");
 </script>
 <script>
-    $('#tabbar-div p span').click(function() {
-        console.log(111111);
+    $('#tabbar-div p span').click(function() {   
         $('.table1').hide();
         var index = $(this).index();
-        console.log(index);
         $(".table1").eq(index).show();
     });
-    $('#type_id').change(function() {
-        console.log(2222222);
+    $('#type_id').change(function() {      
         var value =$(this).val();
         $.ajax({
            url:'{:url("showAttr")}',
@@ -152,13 +149,10 @@
                $('#showAttr').html(msg);
             }
         });
-    })
+    });
     function clonethis(obj) {
-        console.log(2333333);
         var object =$(obj).parent().parent();
-
         var newTr =object.clone();
-        // debugger;
         if($(obj).html()=="[+]"){
             newTr.find('a').html('[-]');
             object.after(newTr);

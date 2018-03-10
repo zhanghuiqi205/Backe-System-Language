@@ -7,11 +7,12 @@
         <p>
             <span class="tab-front" id="general-tab">通用信息</span>
             <span class="tab-front" id="general-tab">详细信息</span>
+            <span class="tab-front" id="general-tab">商品属性</span>
         </p>
     </div>
     <div id="tabbody-div">
         <form enctype="multipart/form-data" action="" method="post">
-            <table width="90%" id="general-table" align="center">
+            <table width="90%" class="table1" align="center">
                 <tr>
                     <td class="label">商品名称：</td>
                     <td><input type="text" name="goods_name" value="{$info.goods_name}"size="30" />
@@ -91,13 +92,51 @@
                     </td>
                 </tr> -->
             </table>
-            <table width="90%" id="general-table" align="center" style="display:none">
+            <table width="90%" class="table1" align="center" style="display:none">
                 <tr>
                     <td class="label">商品描述</td>
                     <td>
                         <script src="/ueditor/ueditor.config.js"></script>
                         <script src="/ueditor/ueditor.all.js"></script>
                         <script id="container" name="goods_body" type="text/plain" style="min-height:400px">{$info.goods_body}</script>
+                    </td>
+                </tr>
+            </table>
+            <table width="90%" class="table1" align="center" style="display:none"> 
+                <tr>
+                   <td>
+                       <select name="type_id" id="type_id">
+                        <option value="0">选择类型</option>
+                        {volist name="type" id="vo"}
+                            <option value="{$vo.id}" {eq name="info.type_id" value="$vo.id"}selected="selected"{/eq}>
+                               {$vo.type_name}
+                            </option>
+                        {/volist}
+                       </select>
+                   </td>   
+                </tr>
+                <tr>
+                    <td colspan="2" id="showAttr">
+                        <table width="90%" align="center">
+                                {volist name="attr" id="v3"}
+                                {volist name="v3" id="vo"}
+                                 <tr>
+                                     <td class="label">{eq name="vo.attr_type" value="2"}<a href="javascript:;" onclick="clonethis(this)">{eq name="i" value="1"}[+]{else/}[-]{/eq}</a>{/eq}{$vo.attr_name}：</td>
+                                     <td>
+                                         {eq name="vo.attr_input_type" value="1"}
+                                         <input type="text" name="attr[{$vo.attr_id}][]" value="{$vo.attr_value}">
+                                         {else /}
+                                         <select name="attr[{$vo.attr_id}][]">
+                                             {volist name="vo.attr_values" id="v"}
+                                             <option {eq name="vo.attr_value" value="$v" }selected="selected"{/eq}>{$v}</option>
+                                             {/volist}
+                                         </select>
+                                         {/eq}
+                                     </td>
+                                 </tr>
+                                 {/volist}
+                             {/volist}
+                        </table>
                     </td>
                 </tr>
             </table>
@@ -120,9 +159,31 @@
 </script>
 <script>
     $('#tabbar-div p span').click(function() {
-        $('table').hide();
+        $('.table1').hide();
         var index = $(this).index();
-        $("table").eq(index).show();
+        $(".table1").eq(index).show();
     });
+    $('#type_id').change(function() {      
+        var value =$(this).val();
+        $.ajax({
+           url:'{:url("showAttr")}',
+           type:'post',
+           data:{type_id:value},
+           success:function(msg){
+               $('#showAttr').html(msg);
+            }
+        });
+    });
+    function clonethis(obj) {
+        var object =$(obj).parent().parent();
+        var newTr =object.clone();
+        if($(obj).html()=="[+]"){
+            newTr.find('a').html('[-]');
+            object.after(newTr);
+        }else{
+            object.remove();
+        }
+
+    }
 </script>
 {/block}
