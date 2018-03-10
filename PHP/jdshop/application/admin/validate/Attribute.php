@@ -4,7 +4,7 @@ use think\Validate;
 
 // 属性的验证器
 
-class Goods extends Validate{
+class Attribute extends Validate{
    
     // 验证规则
     protected $rule =[
