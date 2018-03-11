@@ -8,6 +8,7 @@
             <span class="tab-front" id="general-tab">通用信息</span>
             <span class="tab-front" id="general-tab">详细信息</span>
             <span class="tab-front" id="general-tab">商品属性</span>
+            <span class="tab-front" id="general-tab">商品相册</span>
         </p>
     </div>
     <div id="tabbody-div">
@@ -116,6 +117,20 @@
                     <td colspan="2" id="showAttr"></td>
                 </tr>
            </table>
+           <table width="90%" class="table1 pic" align="center" style="display:none">
+              <tr>
+                  <td class="label"></td>
+                  <td>
+                      <input type="button" id="addNewsPic" value="增加上传图片">
+                  </td>
+              </tr>
+              <tr>
+                  <td class="label">相册图片:</td>
+                  <td>
+                      <input type="file" name="pic[]">
+                  </td>
+              </tr>
+           </table>
             <div class="button-div">
                 <input type="submit" value=" 确定 " class="button"/>
                 <input type="reset" value=" 重置 " class="button" />
@@ -161,5 +176,9 @@
         }
 
     }
+    $('#addNewsPic').click(function() {
+        var newTr =$(this).parent().parent().next().clone();
+        $('.pic').append(newTr);
+    });
 </script>
 {/block}

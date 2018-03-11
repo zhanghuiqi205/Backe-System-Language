@@ -8,6 +8,7 @@
             <span class="tab-front" id="general-tab">通用信息</span>
             <span class="tab-front" id="general-tab">详细信息</span>
             <span class="tab-front" id="general-tab">商品属性</span>
+            <span class="tab-front" id="general-tab">商品相册</span>
         </p>
     </div>
     <div id="tabbody-div">
@@ -104,7 +105,7 @@
             </table>
             <table width="90%" class="table1" align="center" style="display:none"> 
                 <tr>
-                   <td>
+                   <td colspan="2">
                        <select name="type_id" id="type_id">
                         <option value="0">选择类型</option>
                         {volist name="type" id="vo"}
@@ -140,6 +141,28 @@
                     </td>
                 </tr>
             </table>
+            <table width="90%" class="table1 pic" align="center" style="display: none">
+                <tr>
+                <td colspan="2">
+                    {volist name="img" id="vo"}
+                    <div style="width: 100px; float: left;margin: 0 10px;">
+                    <img src="{$Think.config.resource_url}{$vo.goods_img}" width="100" height="100" /><input type="button"  class="delImg" data-img-id="{$vo.id}" value="删除"></div>
+                    {/volist}
+                </td>
+            </tr>
+            <tr>
+                <td class="label"></td>
+                <td>
+                <input type="button" id="addNewPic" value="增加上传图片">
+                </td>
+            </tr>
+            <tr>
+                <td class="label">相册图片：</td>
+                <td>
+                <input type="file" name="pic[]">
+                </td>
+            </tr>
+        </table>
             <div class="button-div">
                 <input type="submit" value=" 确定 " class="button"/>
                 <input type="reset" value=" 重置 " class="button" />
@@ -185,5 +208,24 @@
         }
 
     }
+    $('#addNewPic').click(function() {
+        console.log(111111111);
+        var newTr =$(this).parent().parent().next().clone();
+        $('.pic').append(newTr);
+    });
+
+    $('.delImg').click(function(){
+        var obj = $(this).parent();
+        var value = $(this).attr('data-img-id');
+        $.ajax({
+             url:'{:url("delImg")}',
+             type:'post',
+             data:{img_id:value},
+             success:function(){
+                 obj.remove();
+             }
+        });
+    });
+
 </script>
 {/block}

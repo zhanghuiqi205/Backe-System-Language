@@ -132,6 +132,9 @@ class Goods extends Common{
             }
             // dump($list);
             $this->assign('attr',$list);
+            // 获取当前商品的相册信息
+            $img = Db::name("goods_img")->where(['goods_id'=>$id])->select();
+            $this->assign('img',$img);
             return $this->fetch();
         }
         $model = model('Goods');
@@ -141,8 +144,7 @@ class Goods extends Common{
         }
         $this->success('ok');
     }
-    public function showAttr()
-    {
+    public function showAttr(){
         $type_id =input('type_id/d');
         if($type_id<=0){
             return '参数错误';
@@ -162,6 +164,10 @@ class Goods extends Common{
         
         $this->assign('data',$data);
         return $this->fetch();
+    }
+    public function delImg(){
+        $id = input('img_id/d');
+        Db::name('goods_img')->where(['id'=>$id])->delete();
     }
 
 

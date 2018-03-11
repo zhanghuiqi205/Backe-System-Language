@@ -37,6 +37,8 @@ class Goods extends Model{
         $attr = input('attr/a');
         // 实现属性的批量写入
         model('GoodsAttr')->insertAllAttr($goods_id,$attr);
+        // 实现文件上传
+        $this->uploadsImg($goods_id);
         Db::commit();
 
        }catch(\Exception $e){
@@ -187,7 +189,37 @@ class Goods extends Model{
         Db::name('goods_attr')->where(['goods_id'=>$postData['id']])->delete();
         $attr =input('attr/a');
         //实现属性的批量写入
-        model('GoodsAttr')->insertAllAttr($postData['id'],$attr);  
+        model('GoodsAttr')->insertAllAttr($postData['id'],$attr);
+
+        //处理相册
+        $this->uploadsImg($postData['id']);  
+    }
+    public function uploadsImg($goods_id)
+    {
+        $list = [];//保存要写入数据库中的内容
+        $files =request()->file('pic');
+        if($files===null){
+            return;
+        }
+        foreach ($files as $file) {
+            $info = $file->move('uploads');
+            if($info){
+                // 获取上传的地址
+                $goods_img =str_replace('\\','/','uploads/'.$info->getSaveName());
+                // 制作缩略图
+                $image =\think\Image::open($goods_img);
+                // 保存缩略图
+                $goods_thumb ='uploads/'.date('Ymd').'/thumb_'.$info->getFileName();
+                $image->thumb(100,100)->save($goods_thumb);
+                // 转移图片
+                upload_to_cdn($goods_img);
+                upload_to_cdn($goods_thumb);
+                $list[]=['goods_id'=>$goods_id,'goods_img'=>$goods_img,'goods_thumb'=>$goods_thumb];
+            }
+        }
+        if($list){
+            Db::name('goods_img')->insertAll($list);
+        }
     }
 
 }
