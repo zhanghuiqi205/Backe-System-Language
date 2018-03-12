@@ -24,8 +24,7 @@ class Admin extends Common{
       Db::name('admin_role')->insert(['admin_id'=> $admin_id,'role_id'=>$data['role_id']]);
        $this->success('ok');
    }
-   public function index()
-   {
+   public function index(){
        $list =Db::name('admin')->alias('a')->join('jd_admin_role b','a.id =b.admin_id','left')->join('jd_role c','b.role_id=c.id','left')->field('a.*,c.role_name')->select();
        return $this->fetch('index',['list'=>$list]);
    }

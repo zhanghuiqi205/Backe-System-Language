@@ -1,0 +1,29 @@
+{extend name="public:base" /}
+{block name="body"}
+<form method="post" action="" name="listForm">
+    <div class="list-div" id="listDiv">
+        <table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+            <tr>
+                <th>权限名称</th>
+                <th>模型名称</th>
+                <th>控制器名称</th>
+                <th>方法名称</th>
+                <th>操作</th>
+            </tr> 
+            {volist name="data" id="vo" }     
+            <tr align="center" class="0">
+                <td> {$vo.lev|str_repeat='&nbsp;&nbsp;',###}{$vo.rule_name}</td>
+                <td> {$vo.module_name}</td>
+                <td> {$vo.controller_name}</td>
+                <td> {$vo.action_name}</td>                
+                <td width="30%" align="center">
+                <a href="{:url('edit','id='.$vo['id'])}">编辑</a> |
+                <a href="{:url('del','id='.$vo['id'])}" title="移除" onclick="">移除</a>
+                </td>
+            </tr>
+            {/volist}
+            
+        </table>
+    </div>
+</form>
+{/block}
