@@ -1,0 +1,73 @@
+{extend name="public:base" /}
+{block name="body"}
+<div class="list-div" id="listDiv">
+    <form action="" method="POST" enctype="multipart/form-data">
+        <table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+            <thead>
+                <tr>
+                    <th width="40"><input type="checkbox" id="selectAll" />全选</th>
+                    <th>顶级权限</th>
+                    <th>子权限</th>
+                </tr>
+            </thead>
+            <tbody>
+            {volist name="rules" id="vo"} 
+            {eq name="vo.parent_id" value="0"}         
+                <tr>
+                    <td>
+                        <input type="checkbox" class="top" name="rule[]" value="{$vo.id}" {in name="vo.id" value="$hasRules" }checked="checked"{/in}>
+                    </td>
+                    <td>{$vo.rule_name}</td>
+                    <td>
+                        {volist name="rules" id="v"} 
+                        {eq name="v.parent_id" value="$vo.id"}
+                        <input type="checkbox" class="child" name="rule[]" value="{$v.id}" {in name="v.id" value="$hasRules" }checked="checked"{/in}/>{$v.rule_name}&nbsp;  
+                        {/eq} 
+                        {/volist}                      
+                    </td>
+                </tr>
+                {/eq} 
+                {/volist}
+                <tr>
+                    <td colspan="3">
+                        
+                        <button type="submit" class="btn btn-default">表单提交</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+{/block}
+{block name="js"}
+<script type="text/javascript">
+    // 全选
+    $('#selectAll').click(function(){
+        var ischeck = $(this).prop('checked');
+        if(ischeck){
+            // 全部选中
+            $('input').prop('checked','checked');
+        }else{
+            // 全部取消
+            $('input').prop('checked',false);
+        }
+    })
+    // 顶级权限选中子权限全部选中
+    $('.top').click(function(){
+        var ischeck = $(this).prop('checked');
+        if(ischeck){
+            $(this).parent().parent().find('.child').prop('checked','checked');
+        }else{
+            $(this).parent().parent().find('.child').prop('checked',false);
+        }
+    });
+    // 实现子权限选中顶级选中
+    $('.child').click(function(){
+        var ischeck = $(this).prop('checked');
+        if(ischeck){
+            $(this).parent().parent().find('.top').prop('checked','checked');
+        }
+    });
+</script>
+{/block}

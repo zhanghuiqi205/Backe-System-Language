@@ -44,6 +44,7 @@
                 <td align="center">{$item.role_name}</td>
                 <td align="center">
                     {gt name="item.id" value="1"}
+                    <a href="{:url('disfetch','id='.$item['id'])}" title="分配权限"><img src="__ADMIN__/Images/icon_edit.gif" width="16" height="16" border="0" /></a>
                      <a href="{:url('edit','id='.$item['id'])}" title="编辑"><img src="__ADMIN__/Images/icon_edit.gif" width="16" height="16" border="0" /></a>
                     <a href="{:url('del','id='.$item['id'])}" onclick="" title="回收站"><img src="__ADMIN__/Images/icon_trash.gif" width="16" height="16" border="0" /></a>
                     {/gt}

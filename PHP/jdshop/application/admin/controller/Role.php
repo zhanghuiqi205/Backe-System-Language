@@ -43,6 +43,23 @@ class Role extends Common{
         Db::name('role')->where(['id'=>$id])->update($data);
         $this->success('ok','index');
     }
+    // 实现权限分配
+    public function disfetch()
+    {
+        $model = model('RoleRule');
+        $role_id = input('id/d');
+        if($this->request->isGet()){
+            $hasRules = $model->getRuleById($role_id);
+            $this->assign('hasRules',$hasRules);
+            $rules = model('Rule')->getRules();
+            $this->assign('rules',$rules);
+            return $this->fetch();
+        }
+        $role_id =input('id/d');
+        $rules = input('rule/a');
+        $model->disfetch($role_id,$rules);
+        $this->success('ok'); 
+    }
 
 
 }
