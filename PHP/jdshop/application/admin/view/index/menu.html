@@ -72,7 +72,7 @@ body {
   cursor:pointer;
 }
 #main-div a:visited, #menu-list a:link, #menu-list a:hover {
-  color:#335B64;
+  color:#335B64
   text-decoration:none;
 }
 #menu-list a:active {
@@ -114,7 +114,7 @@ body {
     <p>
         <span style="float:right; padding:3px 5px;" >
             <a href="javascript:toggleCollapse();">
-                <img id="toggleImg" src="__ADMIN__Images/menu_minus.gif" width="9" height="9" border="0" alt="闭合" />
+                <img id="toggleImg" src="./Images/menu_minus.gif" width="9" height="9" border="0" alt="闭合" />
             </a>
         </span>
         <span class="tab-front" id="menu-tab">菜单</span>
@@ -123,35 +123,20 @@ body {
 <div id="main-div">
     <div id="menu-list">
         <ul id="menu-ul">
+            {volist name="menus" id="vo"}
+            {eq name="vo.parent_id" value="0"}
             <li class="explode" key="02_cat_and_goods" name="menu">
-            商品管理
+            {$vo.rule_name}
                 <ul>
-                    <li class="menu-item"><a href="goodsList.html" target="main-frame">商品列表</a></li>
-                    <li class="menu-item"><a href="goodsAdd.html" target="main-frame">添加新商品</a></li>
-                    <li class="menu-item"><a href="categoryList.html" target="main-frame">商品分类</a></li>
-                    <li class="menu-item"><a href="brandList.html" target="main-frame">商品品牌</a></li>
-                    <li class="menu-item"><a href="goodsTrash.html" target="main-frame">商品回收站</a></li>
+                   {volist name="menus" id="v"}
+                    {eq name="v.parent_id" value="$vo.id"}
+                    <li class="menu-item"><a href="{:url($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" target="main-frame">{$v.rule_name}</a></li>
+                   {/eq}
+                  {/volist}
                 </ul>
             </li>
-
-            <li class="explode" key="04_order" name="menu">
-            订单管理
-                <ul>
-                    <li class="menu-item"><a href="orderList.html" target="main-frame">订单列表</a></li>
-                    <li class="menu-item"><a href="orderQuery.html" target="main-frame">订单查询</a></li>
-                    <li class="menu-item"><a href="orderAdd.html" target="main-frame">添加订单</a></li>
-                    <li class="menu-item"><a href="delivery_list.html" target="main-frame">发货单列表</a></li>
-                    <li class="menu-item"><a href="back_list.html" target="main-frame">退货单列表</a></li>
-                </ul>
-            </li>
-            <li class="explode" key="08_members" name="menu">
-            会员管理
-                <ul>
-                    <li class="menu-item"><a href="userList.html" target="main-frame">会员列表</a></li>
-                    <li class="menu-item"><a href="userAdd.html" target="main-frame">添加会员</a></li>
-                    <li class="menu-item"><a href="userMessage.html" target="main-frame">会员留言</a></li>
-                </ul>
-            </li>
+            {/eq}
+            {/volist}
         </ul>
     </div>
     <div id="help-div" style="display:none">

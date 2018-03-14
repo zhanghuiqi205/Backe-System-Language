@@ -10,10 +10,12 @@ class Index  extends Common{
         return view();
     }
     public function menu(){
+        $this->assign('menus',$this->user['menus']);
         return view();
     }
     public function main(){
         return view();
     }
+   
 
 }
