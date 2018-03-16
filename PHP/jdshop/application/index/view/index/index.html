@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	{incluede file="public/header" /}
+	{include file="public/header" /}
 	<!-- 综合区域 start 包括幻灯展示，商城快报 -->
 	<div class="colligate w1210 bc mt10">
 		<!-- 幻灯区域 start -->
@@ -204,27 +204,15 @@
 				<!-- 热卖商品 start -->
 				<div class="hot none">
 					<ul>
+                        {volist name="hot" id="vo"}
 						<li>
 							<dl>
-								<dt><a href=""><img src="__HOME__images/hot1.jpg" alt="" /></a></dt>
-								<dd><a href="">索尼双核五英寸四核手机！</a></dd>
-								<dd><span>售价：</span><strong> ￥1386.00</strong></dd>
+								<dt><a href="{:url('Goods/index','id='.$vo['id'])}"><img src="{$Think.config.resource_url}{$vo.goods_img}" alt="" /></a></dt>
+								<dd><a href="{:url('Goods/index','id='.$vo['id'])}">{$vo.goods_name}</a></dd>
+								<dd><span>售价：</span><strong> ￥{$vo.shop_price}</strong></dd>
 							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/hot2.jpg" alt="" /></a></dt>
-								<dd><a href="">华为通话平板仅需969元！</a></dd>
-								<dd><span>售价：</span><strong> ￥969.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/hot3.jpg" alt="" /></a></dt>
-								<dd><a href="">卡姿兰明星单品7件彩妆套装</a></dd>
-								<dd><span>售价：</span><strong> ￥169.00</strong></dd>
-							</dl>
-						</li>
+                        </li>
+                        {/volist}
 					</ul>
 				</div>
 				<!-- 热卖商品 end -->
@@ -232,27 +220,15 @@
 				<!-- 推荐商品 atart -->
 				<div class="recommend none">
 					<ul>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/recommend1.jpg" alt="" /></a></dt>
-								<dd><a href="">黄飞红麻辣花生整箱特惠装</a></dd>
-								<dd><span>售价：</span><strong> ￥139.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/recommend2.jpg" alt="" /></a></dt>
-								<dd><a href="">戴尔IN1940MW 19英寸LE</a></dd>
-								<dd><span>售价：</span><strong> ￥679.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/recommend3.jpg" alt="" /></a></dt>
-								<dd><a href="">罗辑思维音频车载CD</a></dd>
-								<dd><span>售价：</span><strong> ￥24.80</strong></dd>
-							</dl>
-						</li>
+                        {volist name="rec" id="vo"}
+                            <li>
+                                <dl>
+                                    <dt><a href="{:url('Goods/index','id='.$vo['id'])}"><img src="{$Think.config.resource_url}{$vo.goods_img}" alt="" /></a></dt>
+                                    <dd><a href="{:url('Goods/index','id='.$vo['id'])}">{$vo.goods_name}</a></dd>
+                                    <dd><span>售价：</span><strong> ￥{$vo.shop_price}</strong></dd>
+                                </dl>
+                            </li>
+                        {/volist}
 					</ul>
 				</div>
 				<!-- 推荐商品 end -->
@@ -260,27 +236,15 @@
 				<!-- 新品上架 start-->
 				<div class="new none">
 					<ul>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/new1.jpg" alt="" /></a></dt>
-								<dd><a href="">E路航T70超薄GPS 7寸大屏！</a></dd>
-								<dd><span>售价：</span><strong> ￥369.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/new2.jpg" alt="" /></a></dt>
-								<dd><a href="">乐和居 爆品 特价疯狂抢</a></dd>
-								<dd><span>售价：</span><strong> ￥2799.00</strong></dd>
-							</dl>
-						</li>
-						<li>
-							<dl>
-								<dt><a href=""><img src="__HOME__images/new3.jpg" alt="" /></a></dt>
-								<dd><a href="">北欧 套装 抄底再续最后几小时</a></dd>
-								<dd><span>售价：</span><strong> ￥999.00</strong></dd>
-							</dl>
-						</li>
+                            {volist name="new" id="vo"}
+                            <li>
+                                <dl>
+                                    <dt><a href="{:url('Goods/index','id='.$vo['id'])}"><img src="{$Think.config.resource_url}{$vo.goods_img}" alt="" /></a></dt>
+                                    <dd><a href="{:url('Goods/index','id='.$vo['id'])}">{$vo.goods_name}</a></dd>
+                                    <dd><span>售价：</span><strong> ￥{$vo.shop_price}</strong></dd>
+                                </dl>
+                            </li>
+                            {/volist}
 					</ul>
 				</div>
 				<!-- 新品上架 end-->
