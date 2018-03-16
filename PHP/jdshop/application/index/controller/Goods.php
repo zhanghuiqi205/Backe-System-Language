@@ -6,7 +6,7 @@ class Goods extends Common
 {
     public function index()
     {
-        $id = inpput('id/d');
+        $id = input('id/d');
         if($id<0){
             $this->redirect('index/index/index');
         }
@@ -20,6 +20,7 @@ class Goods extends Common
         $this->assign('goodsInfo',$goodsInfo);
         // 获取商品相册信息
         $img =Db::name('goods_img')->where(['goods_id'=>$id])->select();
+        dump($img);
         $this->assign('img',$img);
         return view();
     }
