@@ -1,3 +1,8 @@
+## 项目中商品相关的数据表相互的关系
+![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/jdshop/admin_goods.png)
+## 项目中角色和权限相关的数据表关系
+![image](https://github.com/zhanghuiqi205/Backe-System-Language/blob/master/PHP/jdshop/role_rule.png)
+
 ThinkPHP 5.0
 ===============
 
