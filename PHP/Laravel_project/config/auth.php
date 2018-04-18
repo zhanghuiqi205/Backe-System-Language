@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+//      自定义后台的guard实例diy_admin
+        'diy_admin'=>[
+             'driver'  =>'session',
+             'provider'=>'admin',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -69,6 +74,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+//       自定义diy_admin实例的提供者admin
+         'admin' =>[
+             'driver' =>'eloquent',
+             'model' => App\Admin\Manager::class,  //指定模型的空间位置
+         ],
 
         // 'users' => [
         //     'driver' => 'database',
