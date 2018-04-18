@@ -20,8 +20,8 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
     <title>后台登录 - H-ui.admin v3.1</title>
-    <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
 </head>
 
 <body>
@@ -65,8 +65,21 @@
             </form>
         </div>
     </div>
-    <div class="footer">Copyright 你的公司名称 by H-ui.admin v3.1</div>
+    <div class="footer">在线直播平台--by  张惠奇</div>
     <script type="text/javascript" src="/admin/lib/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/admin/static/h-ui/js/H-ui.min.js"></script>
+    {{--引入layer--}}
+     <script type="text/javascript" src="/admin/lib/layer/2.4/layer.js"></script>
+     <script>
+         $(function () {
+             var err ="";
+             @if(count($errors)>0)
+                @foreach($errors ->all() as $error)
+                   err += "{{$error}}<br/>";
+                @endforeach
+                layer.alert(err,{icon:5,title:'错误'});
+             @endif
+         });
+     </script>
 </body>
 </html>

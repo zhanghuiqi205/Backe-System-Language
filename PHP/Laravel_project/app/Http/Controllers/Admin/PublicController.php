@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,5 +36,9 @@ class PublicController extends Controller
             ]);
         }
 
+    }
+    public  function logout(){
+       Auth::guard('diy_admin')->logout();
+       return redirect('/admin/public/login');
     }
 }
