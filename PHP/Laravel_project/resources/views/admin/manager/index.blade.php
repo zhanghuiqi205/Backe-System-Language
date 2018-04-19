@@ -60,7 +60,7 @@
 				<td>{{$val ->username}}</td>
 				<td>{{$val ->mobile}}</td>
 				<td>{{$val ->email}}</td>
-				<td>{{$val ->role_id}}</td>
+				<td>{{$val ->rel_role ->role_name}}</td>
 				<td>{{$val -> created_at}}</td>
 				<td class="td-status">
                     @if( $val ->status == '2')

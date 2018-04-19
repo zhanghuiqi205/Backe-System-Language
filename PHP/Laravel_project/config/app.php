@@ -229,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 //       所有第三方存放的位置
         'Geetest' => Germey\Geetest\Geetest::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
 ];
