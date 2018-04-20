@@ -42,4 +42,21 @@ Route::group(['prefix' =>'admin','middleware'=>['auth:diy_admin','rbac']],functi
     Route::get('role/index','Admin\RoleController@index');//列表
     Route::any('role/assign','Admin\RoleController@assign');//权限分派操作
 
+    //会员管理操作
+    Route::get('member/index','Admin\MemberController@index');//列表
+    Route::any('member/add','Admin\MemberController@add');//添加操作
+
+   //会员管理模块
+    Route::post('uploader/webuploader','Admin\UploaderController@webuploader');//上传头像
+    Route::get('member/getAreaById','Admin\MemberController@getAreaById');//添加用户板块
+
+  //专业与专业分类
+    Route::get('protype/index','Admin\ProtypeController@index');//专业分类列表   
+    Route::get('profession/index','Admin\ProfessionController@index');//专业列表   
+
+   //课程与点播课程管理
+   Route::get('course/index','Admin\CourseController@index');//课程列表
+   Route::get('lesson/index','Admin\LessonController@index');//点播列表
+   Route::get('lesson/play','Admin\LessonController@play');//播放列表
+
 });
