@@ -11,6 +11,6 @@ class Lesson extends Model
 
     public function rel_course()
     {
-        return $this->hsaOne('App\Admin\Course','id','course_id');
+        return $this->hasOne('App\Admin\Course','id','course_id');
     }
 }

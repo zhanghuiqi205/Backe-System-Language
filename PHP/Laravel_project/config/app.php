@@ -169,6 +169,7 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 //        所有额外的第三方包的存放位置
         Germey\Geetest\GeetestServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
 //       所有第三方存放的位置
         'Geetest' => Germey\Geetest\Geetest::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

@@ -59,4 +59,12 @@ Route::group(['prefix' =>'admin','middleware'=>['auth:diy_admin','rbac']],functi
    Route::get('lesson/index','Admin\LessonController@index');//点播列表
    Route::get('lesson/play','Admin\LessonController@play');//播放列表
 
+
+
+   //试卷试题部分
+   Route::get('paper/index','Admin\PaperController@index');//试卷列表    
+   Route::get('question/index','Admin\QuestionController@index');//试题列表    
+   Route::get('question/export','Admin\QuestionController@export');//试卷导出    
+   Route::any('question/import','Admin\QuestionController@import');//试卷导入   
+   
 });
