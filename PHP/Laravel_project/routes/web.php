@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
 
 /*
  * 后台的路由集合
@@ -65,6 +68,26 @@ Route::group(['prefix' =>'admin','middleware'=>['auth:diy_admin','rbac']],functi
    Route::get('paper/index','Admin\PaperController@index');//试卷列表    
    Route::get('question/index','Admin\QuestionController@index');//试题列表    
    Route::get('question/export','Admin\QuestionController@export');//试卷导出    
-   Route::any('question/import','Admin\QuestionController@import');//试卷导入   
+   Route::any('question/import','Admin\QuestionController@import');//试卷导入
    
+   
+
+   //直播部分
+   Route::get('stream/index','Admin\StreamController@index');//流列表    
+   Route::any('stream/add','Admin\StreamController@add');//流添加    
+   Route::get('live/index','Admin\LiveController@index');//直播课程列表
 });
+
+
+/*
+*
+前台路由
+*/
+Route::get('/', 'Home\IndexController@index'); //首页
+// 专业详情页面
+Route::get('/profession/detail', 'Home\ProfessionController@detail');
+// 下单页面
+Route::get('/showOrder', 'Home\ProfessionController@showOrder');
+
+//微信支付
+Route::get('/payWithWX', 'Home\ProfessionController@payWithWX');

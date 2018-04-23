@@ -10,7 +10,12 @@ class Live extends Model
     protected $table ='live';
     public function rel_profession()
     {
-        
+      return $this->hasOne('App\Admin\Profession','id','profession_id');  
+    }
+
+    public function rel_stream ()
+    {
+        return $this->hasOne('App\Admin\Stream','id','stream_id');
     }
 
 
